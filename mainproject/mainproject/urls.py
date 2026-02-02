@@ -16,7 +16,38 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .views import home
+from .views import contact
+from .views import email
+from .views import email
+from .views import dashbord
+from .views import  Shopping
+from .views import  Myorders
+from .views import feedback
+from .views import myprofile
+from .views import skills
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+      path('', home,name='home'),
+      
+      path('contact',contact,name='contact'),
+      
+      path('skills', skills,name='skills'),
+      
+      
+      path('email', email,name='email'),
+      
+      path('dashbord', dashbord,name='dashbord'),
+      
+  
+      
+      path('shopping', Shopping,name='shopping'),
+      
+      path('Myorders', Myorders,name='Myorders'),
+      
+      path('feedback', feedback,name='feedback'),
+      
+      path('myprofile', myprofile,name='myprofile'),
+      
 ]
