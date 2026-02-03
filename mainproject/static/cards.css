@@ -1,0 +1,134 @@
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+/* Grid */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+/* Card */
+.card {
+    background: #ffffff;
+    color: #333;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(40px);
+    opacity: 0;
+    animation: slideUp 0.8s ease forwards;
+}
+
+/* Stagger animation */
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Hover */
+.card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
+}
+
+/* Image */
+.card-image {
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+/* Content */
+.card-header {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-body {
+    padding: 15px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Footer */
+.card-footer {
+    padding: 15px;
+    text-align: center;
+}
+
+/* Button */
+.btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #764ba2, #667eea);
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(118, 75, 162, 0.4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
