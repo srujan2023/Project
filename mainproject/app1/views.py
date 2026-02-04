@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 
 def app1(request):
- return render(request,'index.html');
+ return render(request,'html.html');
