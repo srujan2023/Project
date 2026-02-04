@@ -13,6 +13,5 @@ class Teachers(models.Model):
     Collage_Name = models.CharField()
     
     Gender = models.CharField()
-    
     def __str__(self):
-        return self.name
+     return self.name

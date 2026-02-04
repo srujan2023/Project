@@ -30,6 +30,17 @@
     <!-- Main Content -->
     <main>
         <section>
+            {%  for teachers in teachers %}
+           <center>
+            <table>
+             <tr><th>Name</th>
+                <td>{{teachers.name}}</td>  <br>
+                <th>Age</th>
+                <td>{{teachers.age}}</td><br>
+                <tr>
+           </table>
+           </center>
+                    {% endfor %}
             <h2>Main Section</h2>
             <p>This is a basic HTML structure page.</p>
         </section>
