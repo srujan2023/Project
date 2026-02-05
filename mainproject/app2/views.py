@@ -20,3 +20,6 @@ def doahboard(request):
 def Shopping(request):
     return render(request,'Shopping.html')
 
+def Teachers(request):
+    return render(request,'Teachers.html')
+

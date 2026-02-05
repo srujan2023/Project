@@ -6,5 +6,5 @@ from .models import Teachers
 def app1(request):
  teachers = Teachers.objects.all()
     
- return render(request,'html.html',{'teachers':teachers})
+ return render(request,'Teachers.html',{'teachers':teachers})
 #  return render(request,'html.html');

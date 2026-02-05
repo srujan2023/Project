@@ -46,6 +46,6 @@ urlpatterns = [
       path('karthik/',include('app4.urls')),
       path('karthik/',include('app5.urls')),
       
-      
+      path('',include('student.urls')),
       
 ]
