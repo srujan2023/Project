@@ -52,6 +52,6 @@ def update(request,id):
         stu_obj.Collage_Name=request.POST.get('Collage_Name')
         stu_obj.Gender=request.POST.get('Gender')
         stu_obj.save()
-        return redirect('app2/Teachers') 
+        return redirect("Teachers.html") 
     return render(request,'update.html',{'teachers':stu_obj})
     
