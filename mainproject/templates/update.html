@@ -17,11 +17,11 @@
       Age
       <input type="number" id="age" name="age" value="{{ teachers.age }}"><br> <br>
       enrollment_date:
-      <input type="date" id="enrollment_date" name="enrollment_date" value="{{ teachers.enrollment_date }}"><br> <br>
+      <input type="date" id="enrollment_date" name="enrollment_date"  value="{{ teachers.enrollment_date|date:'Y-m-d' }}"><br> <br>
       Addres
       <input type="text" id="address" name="address" value="{{ teachers.Address }}"><br> <br>
         DOB:
-        <input type="date" id="DOB" name="DOB" value="{{ teachers.DOB }}"><br> <br>
+        <input type="date" id="DOB" name="DOB" value="{{ teachers.DOB|date:'Y-m-d' }}"><br> <br>
         Teacher_id
         <input type="number" id="Teacher" name="Teacher" value="{{ teachers.Teacher_id }}"><br> <br>
              Collage_Name:
@@ -29,9 +29,6 @@
          Gender
         <input type="text" id="Gender" name="Gender" value="{{ teachers.Gender }}"><br> <br>
       <button type="submit" value="Update">Update</button>
-       
-
-        <button type="submit">Submit</button>
     </form>
 </div>
 

@@ -8,7 +8,7 @@ class Teachers(models.Model):
     Address = models.CharField(null=True,blank=True)
     
     DOB = models.DateField(null=True,blank=True)
-    Teacher_id = models.IntegerField(null=True,blank=True)
+    Teachers_id = models.IntegerField(null=True,blank=True)
     
     Collage_Name = models.CharField(null=True,blank=True)
     

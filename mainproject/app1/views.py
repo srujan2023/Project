@@ -15,7 +15,7 @@ def regsiter(request):
         enrollment_date=request.POST.get('enrollment_date')
         Address=request.POST.get('Address')
         DOB=request.POST.get('DOB')
-        Teacher_id=request.POST.get('Teacher_id')
+        Teachers_id=request.POST.get('Teachers_id')
         Collage_name=request.POST.get('Collage_name')
         Gender=request.POST.get('Gender')
         
@@ -25,7 +25,7 @@ def regsiter(request):
         stu_obj.enrollment_date=enrollment_date
         stu_obj.Address=Address
         stu_obj.DOB=DOB
-        stu_obj.Teacher_id=Teacher_id
+        stu_obj.Teachers_id=Teachers_id
         stu_obj.Collage_Name=Collage_name
         stu_obj.Gender=Gender
         stu_obj.save()
@@ -48,7 +48,7 @@ def update(request,id):
         stu_obj.enrollment_date=request.POST.get('enrollment_date')
         stu_obj.Address=request.POST.get('Address')
         stu_obj.DOB=request.POST.get('DOB')
-        stu_obj.Teacher_id=request.POST.get('Teacher_id')
+        stu_obj.Teachers_id=request.POST.get('Teachers_id')
         stu_obj.Collage_Name=request.POST.get('Collage_Name')
         stu_obj.Gender=request.POST.get('Gender')
         stu_obj.save()
