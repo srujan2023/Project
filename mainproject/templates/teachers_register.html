@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Update</h2>
+
+    <form method="POST">
+
+         <form method="post">
+        {% csrf_token %}
+      name:
+      <input type="text" id="name" name="name" value="{{ teachers.name }}"><br> <br>
+      Age
+      <input type="number" id="age" name="age" value="{{ teachers.age }}"><br> <br>
+      enrollment_date:
+      <input type="date" id="enrollment_date" name="enrollment_date" value="{{ teachers.enrollment_date }}"><br> <br>
+      Addres
+      <input type="text" id="Address" name="Address" value="{{ teachers.Address }}"><br> <br>
+        DOB:
+        <input type="date" id="DOB" name="DOB" value="{{ teachers.DOB }}"><br> <br>
+        Teacher_id
+        <input type="number" id="Teacher_id" name="Teacher_id" value="{{ teachers.Teacher_id }}"><br> <br>
+             Collage_Name:
+        <input type="text" id="Collage_name" name="Collage_name" value="{{ teachers.Collage_name }}"><br> <br>
+         Gender
+        <input type="text" id="Gender" name="Gender" value="{{ teachers.Gender }}"><br> <br>
+      <button type="submit" value="regsiter">regsiter</button>
+    </form>
+</div>
+
+</body>
+</html>

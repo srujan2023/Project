@@ -32,7 +32,6 @@ urlpatterns = [
       path('', home,name='home'),
       
       path('contact',contact,name='contact'),
-      
       path('skills', skills,name='skills'),
       path('email', email,name='email'),
       path('dashbord', dashbord,name='dashbord'),
@@ -45,7 +44,5 @@ urlpatterns = [
       path('karthik/',include('app3.urls')),
       path('karthik/',include('app4.urls')),
       path('karthik/',include('app5.urls')),
-      
-      path('',include('student.urls')),
-      
+           
 ]

@@ -1,0 +1,114 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: #eef2f7;
+    color: #2c2c2c;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: #ffffff;
+    padding: 25px;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+header h1 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+/* Main */
+main {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Section */
+section {
+    width: 100%;
+    max-width: 850px;
+}
+
+/* Table Card */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+    margin-bottom: 35px;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* Rows */
+table tr {
+    transition: background 0.3s ease;
+}
+
+table tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+table tr:hover {
+    background: #eef2ff;
+}
+
+/* Headers */
+table th {
+    width: 40%;
+    text-align: left;
+    padding: 16px 20px;
+    background: transparent;
+    color: #4338ca;
+    font-weight: 600;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Data */
+table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #374151;
+}
+
+/* Remove last border */
+table tr:last-child th,
+table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Footer */
+footer {
+    background: #1f2937;
+    color: #e5e7eb;
+    text-align: center;
+    padding: 16px;
+    font-size: 14px;
+    margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 22px;
+    }
+
+    table th,
+    table td {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+}
