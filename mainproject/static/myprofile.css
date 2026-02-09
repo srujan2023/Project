@@ -1,0 +1,173 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Page background */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #6a78f8, #f25e8d);
+    min-height: 100vh;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Profile card */
+.profile-container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 650px;
+    padding: 35px 40px;
+    border-radius: 14px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Headings */
+.profile-container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1d2671;
+    font-size: 28px;
+}
+
+.profile-container h2 {
+    margin-top: 30px;
+    margin-bottom: 12px;
+    color: #c33764;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 6px;
+    font-size: 20px;
+}
+
+/* Text */
+.profile-container p {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.profile-container strong {
+    color: #555;
+    min-width: 90px;
+    display: inline-block;
+}
+
+/* Skills list */
+.profile-container ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.profile-container li {
+    background: #f2f2f2;
+    padding: 8px 14px;
+    margin: 6px 8px 6px 0;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.profile-container li:hover {
+    background: #6a78f8;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* ---------------- FORM STYLES ---------------- */
+
+form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #444;
+    font-weight: 600;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+form textarea {
+    resize: none;
+    min-height: 90px;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    outline: none;
+    border-color: #6a78f8;
+    box-shadow: 0 0 0 3px rgba(106, 120, 248, 0.2);
+}
+
+/* Submit button */
+form button {
+    width: 100%;
+    background: #6a78f8;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background: #1d2671;
+    transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .profile-container {
+        padding: 25px;
+    }
+
+    .profile-container h1 {
+        font-size: 24px;
+    }
+
+    .profile-container h2 {
+        font-size: 18px;
+    }
+}
