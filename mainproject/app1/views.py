@@ -4,8 +4,7 @@ from .models import Teachers
 
 
 def app1(request):
- teachers = Teachers.objects.all()
-    
+ teachers = Teachers.objects.all()   
  return render(request,'Teachers.html',{'teachers':teachers})
 
 def regsiter(request):   

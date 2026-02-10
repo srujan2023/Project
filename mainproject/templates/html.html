@@ -24,6 +24,8 @@
             <li><a href="Contact.html">Contact</a></li>
             <li><a href="doahboard.html">doahboard</a></li>
             <li><a href="login.html">Login</a></li>
+            <li><a href="articles.html">Articles</a></li>
+
 
         </ul>
     </nav>
@@ -31,13 +33,13 @@
     <!-- Main Content -->
     <main>
         <section>
-            {%  for teachers in teachers %}
+           {%  for articles in articles %}
            <center>
             <table>
-             <tr><th>Name</th>
-                <td>{{teachers.name}}</td>  <br>
-                <th>Age</th>
-                <td>{{teachers.age}}</td><br>
+             <tr><th>Article Name</th>
+                <td>{{ articles.title }}</td>  <br>
+                <th>Article Body</th>
+                <td>{{ articles.body }}</td><br>
                 <tr>
            </table>
            </center>

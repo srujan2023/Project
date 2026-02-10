@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article Submission Form</title>
+</head>
+<body>
+  <h2>Submit an Article</h2>
+  <form  method="post">
+      {% csrf_token %}
+    
+    <!-- Article Title -->
+    <label for="title">Article Title:</label><br>
+    <input type="text" id="title" name="title" required><br><br>
+
+    <label >Article Image:</label><br>
+    <input type="file" id="image" name="image" required><br><br>
+
+     <label for="content">Article Body:</label><br>
+    <textarea id="body" name="body" rows="10" cols="50" required></textarea><br><br>
+    
+    <!-- Author Name -->
+    <label for="author">Author Name:</label><br>
+    <input type="text" id="author" name="author" required><br><br>    
+    <!-- Submit Button -->
+    <button type="submit" >Create Article</button>
+  </form>
+</body>
+</html>
