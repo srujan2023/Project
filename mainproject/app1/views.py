@@ -40,7 +40,8 @@ def regsiter(request):
         # print("callagename",callagename)
         # print("id:",id)
         # print("gender:",gender)   
-        return redirect("/") 
+        return redirect('/karthik/app2/login.html')  # back to login page
+    
     return render(request,'teachers_register.html')
 
 def update(request,id):
@@ -72,11 +73,11 @@ def login(request):
         try:
             teacher = Teachers.objects.get(name=name, Password=Password)
             request.session['teacher_name'] = teacher.name
-            messages.success(request, f"Welcome {teacher.name}!")
+            messages.success(request,"Welcome {teacher.name}!")
             return redirect('/karthik/app2') 
          
         except Teachers.DoesNotExist:
-            messages.error(request, "Invalid name or password")
+            messages.error(request,"Invalid name or password")
             return redirect('/karthik/app2/login.html')  # back to login page
 
     return render(request, 'login.html')

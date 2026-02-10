@@ -1,8 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Teacher Login</title>
+ <link rel="stylesheet" href="{% static 'login.css' %}">
+
 </head>
 <body>
   <div class="container">
@@ -11,10 +14,11 @@
       {% csrf_token %}
       <label for="name">Name</label><br>
       <input type="text" name="name" required>
-<br><br>
       <label for="Password">Password</label><br>
       <input type="password" name="Password" required>
-<br> <br>
+      <p>You don't have account <li><a href="regsiter.html">Register</a></li></p>
+           
+
       <button type="submit">Login</button>
     </form>
   </div>
