@@ -1,9 +1,9 @@
 from django.urls import path
-from .views import articles,create
+from .views import create,article
 
 
 urlpatterns = [
-      path('app2/articles.html', articles,name='articles'), 
-      path('articles.html', create,name='create'), 
+      path('article', article,name='article'), 
+      path('app2/articles.html', create,name='create'), 
       
 ]
