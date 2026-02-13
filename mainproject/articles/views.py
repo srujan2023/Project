@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import articles
 
-
 def create(request):
-    return render(request, 'articles.html')
+    articles = articles.objects.all()
+    return render(request, 'articles.html', {'articles': articles})
+
 
 
 def article(request):
@@ -24,7 +25,8 @@ def article(request):
             body=body,
             author=author
         )
-
+      
         return render(request, 'articles.html', {'success': True})
-
+       
     return render(request, 'articles.html')
+    # return redirect("app2/")

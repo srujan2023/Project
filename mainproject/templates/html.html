@@ -33,17 +33,20 @@
     <!-- Main Content -->
     <main>
         <section>
-           {% comment %} {%  for articles in articles %}
-           <center>
-            <table>
-             <tr><th>Article Name</th>
-                <td>{{ articles.title }}</td>  <br>
-                <th>Article Body</th>
-                <td>{{ articles.body }}</td><br>
-                <tr>
-           </table>
-           </center>
-                    {% endfor %} {% endcomment %}
+        {% for article in article %}
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+        <h3>{{ article.title }}</h3>
+
+        {% if article.image %}
+            <img src="{{ a.image.url }}" width="200">
+        {% endif %}
+
+        <p>{{ article.body }}</p>
+        <small>By {{ articles.author }}</small>
+    </div>
+{% empty %}
+    <p>No articles available</p>
+{% endfor %}
             <h2>Main Section</h2>
             <p>This is a basic HTML structure page.</p>
         </section>
