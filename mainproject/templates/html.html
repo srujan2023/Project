@@ -5,51 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My First Page</title>
- <link rel="stylesheet" href="{% static 'style.css' %}">
-
-   
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
+<header>
+    <h1>Welcome to My Website</h1>
+</header>
 
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="MyProfile.html">Myprofile</a></li>
-            <li><a href="About.html">About</a></li>
-            <li><a href="Shopping.html">Shopping</a></li>
-            <li><a href="Contact.html">Contact</a></li>
-            <li><a href="doahboard.html">doahboard</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="article">Articles</a></li>
+<nav>
+    <ul>
+        <li><a href="MyProfile.html">Myprofile</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="Shopping.html">Shopping</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="doahboard.html">dashboard</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="{% url 'create' %}">Articles</a></li>
+    </ul>
+</nav>
 
+<main>
+    <section>
+<h2>All Articles</h2>
 
-        </ul>
-    </nav>
-
-    <!-- Main Content -->
-    <main>
-        <section>
-        {% for article in article %}
+{% for article in articles %}
     <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
         <h3>{{ article.title }}</h3>
 
         <p>{{ article.body }}</p>
-        <small>By {{ articles.author }}</small>
+        <small>By {{ article.author }}</small>
     </div>
+{% empty %}
+    <p>No articles found.</p>
 {% endfor %}
-            <h2>Main Section</h2>
-            <p>This is a basic HTML structure page.</p>
-        </section>
-    </main>
+        <h2>Main Section</h2>
+        <p>This is a basic HTML structure page.</p>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 My Website</p>
-    </footer>
-    
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 My Website</p>
+</footer>
+
 </body>
 </html>

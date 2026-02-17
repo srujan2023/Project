@@ -1,30 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Article Submission Form</title>
+    <title>Articles</title>
 </head>
 <body>
-  <h2>Submit an Article</h2>
-  <form  method="post">
-      {% csrf_token %}
-    
-    <!-- Article Title -->
-    <label for="title">Article Title:</label><br>
-    <input type="text" id="title" name="title" required><br><br>
 
-    <label >Article Image:</label><br>
-    <input type="file" id="image" name="image" required><br><br>
+<h2>Submit Article</h2>
 
-     <label for="content">Article Body:</label><br>
-    <textarea id="body"  id="body" name="body" rows="10" cols="50" required></textarea><br><br>
-    
-    <!-- Author Name -->
-    <label for="author">Author Name:</label><br>
-    <input type="text" id="author" name="author" required><br><br>    
-    <!-- Submit Button -->
-    <button type="submit" >Create Article</button>
-  </form>
+<form method="post" enctype="multipart/form-data" action="{% url 'article' %}">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="Title" required><br><br>
+    {% comment %} <input type="file" name="image" required><br><br> {% endcomment %}
+    <textarea name="body" placeholder="Body" required></textarea><br><br>
+    <input type="text" name="author" placeholder="Author" required><br><br>
+    <button type="submit">Submit</button>
+</form>
+
+<hr>
+
+<h2>All Articles</h2>
+
+{% for article in articles %}
+    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+        <h3>{{ article.title }}</h3>
+
+        {% comment %} {% if article.image %}
+            <img src="{{ article.image.url }}" width="200">
+        {% endif %} {% endcomment %}
+
+        <p>{{ article.body }}</p>
+        <small>By {{ article.author }}</small>
+    </div>
+{% empty %}
+    <p>No articles found.</p>
+{% endfor %}
+
 </body>
 </html>

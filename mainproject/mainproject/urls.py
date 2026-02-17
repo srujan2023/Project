@@ -28,6 +28,7 @@ from .views import myprofile
 from .views import skills
 
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
       path('', home,name='home'),
       
@@ -45,6 +46,8 @@ urlpatterns = [
       path('karthik/',include('app4.urls')),
       path('karthik/',include('app5.urls')),
       path('karthik/',include('articles.urls')),
+      
+      
       
            
 ]
