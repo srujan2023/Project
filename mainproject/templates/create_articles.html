@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Articles</title>
+</head>
+<body>
+
+<h2>Submit Article</h2>
+
+<form method="post" enctype="multipart/form-data" action="{% url 'article' %}">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="Title" required><br><br>
+    {% comment %} <input type="file" name="image" required><br><br> {% endcomment %}
+    <textarea name="body" placeholder="Body" required></textarea><br><br>
+    <input type="text" name="author" placeholder="Author" required><br><br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

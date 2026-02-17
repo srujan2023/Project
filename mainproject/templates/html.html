@@ -21,30 +21,11 @@
         <li><a href="Contact.html">Contact</a></li>
         <li><a href="doahboard.html">dashboard</a></li>
         <li><a href="login.html">Login</a></li>
+        <li><a href="create_articles">Create</a></li>
+
         <li><a href="{% url 'create' %}">Articles</a></li>
     </ul>
 </nav>
-
-<main>
-    <section>
-<h2>All Articles</h2>
-
-{% for article in articles %}
-    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
-        <h3>{{ article.title }}</h3>
-
-        <p>{{ article.body }}</p>
-        <small>By {{ article.author }}</small>
-    </div>
-{% empty %}
-    <p>No articles found.</p>
-{% endfor %}
-        <h2>Main Section</h2>
-        <p>This is a basic HTML structure page.</p>
-
-    </section>
-</main>
-
 <footer>
     <p>© 2026 My Website</p>
 </footer>

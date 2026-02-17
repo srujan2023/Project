@@ -1,10 +1,13 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponse
 from .models import articles
 
 def create(request):
     articles_list = articles.objects.all()
     return render(request, 'articles.html', {'articles': articles_list})
 
+def create_articles(request):
+    return render(request, 'create_articles.html',)
 
 
 def article(request):
