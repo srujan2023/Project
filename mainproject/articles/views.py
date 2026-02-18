@@ -13,23 +13,23 @@ def create_articles(request):
 def article(request):
     if request.method == 'POST':
         title = request.POST.get('title')
-        # image = request.FILES.get('image')
+        image = request.FILES.get('image')
         body = request.POST.get('body')
         author = request.POST.get('author')
         
         print("Title:", title)
-        # print("Image:", image)  
+        print("Image:", image)  
         print("Body:", body)
         print("Author:", author)
 
         articles.objects.create(
             title=title,
-            # image=image,
+            image=image,
             body=body,
             author=author
         )
         
-      
         return render(request, 'articles.html', {'success': True})
+    # return redirect("karthik/app2/article")
     return render(request, 'articles.html')
  
