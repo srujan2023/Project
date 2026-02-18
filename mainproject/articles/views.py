@@ -1,4 +1,5 @@
-from django.shortcuts import render,redirect
+from urllib import request
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 from .models import articles
 
@@ -9,6 +10,9 @@ def create(request):
 def create_articles(request):
     return render(request, 'create_articles.html',)
 
+    
+
+   
 
 def article(request):
     if request.method == 'POST':
@@ -30,6 +34,11 @@ def article(request):
         )
         
         return render(request, 'articles.html', {'success': True})
-    # return redirect("karthik/app2/article")
-    return render(request, 'articles.html')
+    
+def delete_article(request, id):
+    articles_list = get_object_or_404(articles, id=id)
+    articles_list.delete()
+    articles_list = articles.objects.all()
+    return render(request, 'articles.html', {'articles': articles_list})
+
  

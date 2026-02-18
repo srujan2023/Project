@@ -19,6 +19,11 @@
         {% endif %} 
         <p>{{ article.body }}</p>
         <small>By {{ article.author }}</small>
+        <a href="{% url 'delete_article' article.id %}"
+   onclick="return confirm('Are you sure?');">
+   Delete
+</a>
+
     </div>
 {% empty %}
     <p>No articles found.</p>
