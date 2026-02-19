@@ -1,36 +1,20 @@
-{% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
- <link rel="stylesheet" href="{% static 'myprofile.css' %}">
-
 </head>
 <body>
-<center>
-    <h1>My Profile</h1>
 
-    <p><strong>Name:</strong> Your Name</p> <br>
-    <p><strong>Email:</strong> yourname@example.com</p> <br> 
-    <p><strong>Phone:</strong> +91 98765 43210</p> <br>
-    <p><strong>Location:</strong> India</p> <br>
+<h2>My Profile</h2>
 
-    <h2>About Me</h2>
-    <p>
-        I am a student learning web development. I am interested in
-        HTML, CSS, Python, and Django.
-    </p>
+<p><strong>Username:</strong> {{ request.user.name }}</p>
+<p><strong>Email:</strong> {{ request.user.email }}</p>
+<p><strong>Password:</strong> {{ request.user.password }}</p>
+<p><strong>Address:</strong> {{ request.user.Address }}</p>
+<p><strong>Age:</strong> {{ request.user.age }}</p>
+<p><strong>Gender:</strong> {{ request.user.Gender }}</p>
 
-    <h2>Skills</h2>
-    <ul>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>Python</li>
-        <li>Django</li>
-    </ul>
-</center>
+
+
 </body>
 </html>
