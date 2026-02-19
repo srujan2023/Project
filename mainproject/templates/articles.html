@@ -8,15 +8,19 @@
 </head>
 <body>
 
-<h2>All Articles</h2>
-
+<center>
+    <h2>All Articles</h2>
+<div class="articles-container">
 {% for article in articles %}
-    <div style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
+<div class="article-card">
         <h3>{{ article.title }}</h3>
 
         {% if article.image %}
             <img src="{{ article.image.url }}" width="200">
+</div>
         {% endif %} 
+</div>
+
         <p>{{ article.body }}</p>
         <small>By {{ article.author }}</small>
         <a href="{% url 'delete_article' article.id %}"
@@ -29,5 +33,6 @@
     <p>No articles found.</p>
 {% endfor %}
 
+    </center>
 </body>
 </html>
