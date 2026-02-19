@@ -41,4 +41,6 @@ def delete_article(request, id):
     articles_list = articles.objects.all()
     return render(request, 'articles.html', {'articles': articles_list})
 
- 
+
+
+
