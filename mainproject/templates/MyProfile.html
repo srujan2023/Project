@@ -14,7 +14,10 @@
 <p><strong>Age:</strong> {{ request.user.age }}</p>
 <p><strong>Gender:</strong> {{ request.user.Gender }}</p>
 
-
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
 
 </body>
 </html>

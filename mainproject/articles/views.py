@@ -1,5 +1,6 @@
 from urllib import request
 from django.shortcuts import render,redirect,get_object_or_404
+from django.contrib.auth import logout
 from django.http import HttpResponse
 from .models import articles
 
@@ -41,12 +42,9 @@ def delete_article(request, id):
     articles_list = articles.objects.all()
     return render(request, 'articles.html', {'articles': articles_list})
 
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 
-@login_required
-def profile(request):
-    return render(request, 'profile.html')
-
+def logout_view(request):
+    logout(request)
+    return redirect('login')
 
 
