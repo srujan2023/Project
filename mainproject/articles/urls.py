@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import create, article,create_articles,delete_article,logout_view
+from .views import create, article,create_articles,delete_article,logout_view,profile
 
 
 urlpatterns = [
+     path('profile/', profile, name='profile'),
     path('logout/', logout_view, name='logout'),
     path('app2/article/', article, name='article'),
     path('app2/articles/', create, name='create'),

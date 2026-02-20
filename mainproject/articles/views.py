@@ -48,3 +48,13 @@ def logout_view(request):
     return redirect('login')
 
 
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+
+
+
+@login_required
+def profile(request):
+    print(request.user)
+    return render(request, 'profile.html')
+
