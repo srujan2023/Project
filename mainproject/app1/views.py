@@ -12,33 +12,18 @@ def regsiter(request):
         name=request.POST.get('name')
         age=request.POST.get('age')
         Password=request.POST.get('Password')
-        # enrollment_date=request.POST.get('enrollment_date')
         Address=request.POST.get('Address')
         DOB=request.POST.get('DOB')
-        # Teachers_id=request.POST.get('Teachers_id')
-        # Collage_name=request.POST.get('Collage_name')
         Gender=request.POST.get('Gender')
         
         stu_obj=Teachers()
         stu_obj.name=name
         stu_obj.age=age
         stu_obj.Password=Password
-        # stu_obj.enrollment_date=enrollment_date
         stu_obj.Address=Address
         stu_obj.DOB=DOB
-        # stu_obj.Teachers_id=Teachers_id
-        # stu_obj.Collage_Name=Collage_name
         stu_obj.Gender=Gender
         stu_obj.save()
-        #print("Teacher_name":,name)
-        # print("Student Name:",name)
-        # print("age:",age)
-        # print("enrollment_date:",enrollment_date)
-        # print("address:",address)
-        # print("DOB:",DOB)
-        # print("callagename",callagename)
-        # print("id:",id)
-        # print("gender:",gender)   
         return redirect('/karthik/app2/login.html')  # back to login page
     
     return render(request,'teachers_register.html')
@@ -60,23 +45,24 @@ def update(request,id):
         return redirect("Teachers.html") 
     return render(request,'update.html',{'teachers':stu_obj})
     
-from django.shortcuts import render, redirect
+
+
+from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .models import Teachers
+from django.shortcuts import render, redirect
 
 def login(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        Password = request.POST.get('Password')
+        username = request.POST.get('name')
+        password = request.POST.get('Password')
 
-        try:
-            teacher = Teachers.objects.get(name=name, Password=Password)
-            request.session['teacher_name'] = teacher.name
-            messages.success(request,"Welcome {teacher.name}!")
-            return redirect('/karthik/app2') 
-         
-        except Teachers.DoesNotExist:
-            messages.error(request,"Invalid name or password")
-            return redirect('/karthik/app2/login.html')  # back to login page
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, f"Welcome {user.username}!")
+            return redirect('profile')   # better to use name instead of URL
+        else:
+            messages.error(request, "Invalid username or password")
 
     return render(request, 'login.html')
