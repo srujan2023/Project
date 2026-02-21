@@ -11,9 +11,6 @@ def create(request):
 def create_articles(request):
     return render(request, 'create_articles.html',)
 
-    
-
-   
 
 def article(request):
     if request.method == 'POST':
@@ -50,9 +47,6 @@ def logout_view(request):
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-
-
-
 @login_required
 def profile(request):
     print(request.user)

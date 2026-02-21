@@ -7,6 +7,8 @@ def app1(request):
  teachers = Teachers.objects.all()   
  return render(request,'Teachers.html',{'teachers':teachers})
 
+from django.contrib.auth.models import User
+
 def regsiter(request):   
     if request.method=='POST':
         name=request.POST.get('name')
@@ -16,6 +18,9 @@ def regsiter(request):
         DOB=request.POST.get('DOB')
         Gender=request.POST.get('Gender')
         
+        # Create Django User
+        user = User.objects.create_user(username=name, password=Password)
+        
         stu_obj=Teachers()
         stu_obj.name=name
         stu_obj.age=age
@@ -24,7 +29,7 @@ def regsiter(request):
         stu_obj.DOB=DOB
         stu_obj.Gender=Gender
         stu_obj.save()
-        return redirect('/karthik/app2/login.html')  # back to login page
+        return redirect('login')  # back to login page
     
     return render(request,'teachers_register.html')
 
@@ -47,7 +52,7 @@ def update(request,id):
     
 
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
@@ -59,10 +64,23 @@ def login(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            login(request, user)
+            auth_login(request, user)
             messages.success(request, f"Welcome {user.username}!")
             return redirect('profile')   # better to use name instead of URL
         else:
             messages.error(request, "Invalid username or password")
 
     return render(request, 'login.html')
+
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .models import Teachers
+
+@login_required
+def profile(request):
+    try:
+        teacher = Teachers.objects.get(name=request.user.username)
+    except Teachers.DoesNotExist:
+        teacher = None
+    return render(request, 'MyProfile.html', {'user': request.user, 'teacher': teacher})

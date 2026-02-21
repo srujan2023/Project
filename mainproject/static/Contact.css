@@ -1,31 +1,72 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+/* Background */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #1a41f0, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .container {
-            width: 400px;
-            margin: 80px auto;
-            background-color: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+/* Contact Card */
+.contact-container {
+    background: #ffffff;
+    padding: 40px;
+    width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
+    /* Animation */
+    animation: fadeSlideUp 1s ease forwards;
+}
 
-        p {
-            font-size: 16px;
-            color: #555;
-        }
+/* Heading */
+.contact-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
 
-        strong {
-            color: #000;
-        }
-    
+/* Paragraph Styling */
+.contact-container p {
+    margin: 12px 0;
+    font-size: 16px;
+    color: #555;
+    transition: 0.3s ease;
+}
+
+/* Hover effect on contact details */
+.contact-container p:hover {
+    transform: translateX(8px);
+    color: #1a41f0;
+}
+
+/* Highlight labels */
+.contact-container strong {
+    color: #222;
+}
+
+/* Card Hover Effect */
+.contact-container:hover {
+    transform: scale(1.03);
+    transition: 0.4s ease;
+}
+
+/* Keyframe Animation */
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
