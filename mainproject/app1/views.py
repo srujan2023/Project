@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 def regsiter(request):   
     if request.method=='POST':
         name=request.POST.get('name')
+        email=request.POST.get('email')
         age=request.POST.get('age')
         Password=request.POST.get('Password')
         Address=request.POST.get('Address')
@@ -19,7 +20,7 @@ def regsiter(request):
         Gender=request.POST.get('Gender')
         
         # Create Django User
-        user = User.objects.create_user(username=name, password=Password)
+        user = User.objects.create_user(username=name, password=Password, email=email)
         
         stu_obj=Teachers()
         stu_obj.name=name
@@ -28,8 +29,12 @@ def regsiter(request):
         stu_obj.Address=Address
         stu_obj.DOB=DOB
         stu_obj.Gender=Gender
-        stu_obj.save()
-        return redirect('login')  # back to login page
+        try:
+            stu_obj.save()
+            return redirect('login')  # back to login page
+        except Exception as e:
+            # Handle save error, perhaps show message
+            return render(request,'teachers_register.html', {'error': str(e)})
     
     return render(request,'teachers_register.html')
 
@@ -66,7 +71,7 @@ def login(request):
         if user is not None:
             auth_login(request, user)
             messages.success(request, f"Welcome {user.username}!")
-            return redirect('profile')   # better to use name instead of URL
+            return redirect('MyProfile')   # better to use name instead of URL
         else:
             messages.error(request, "Invalid username or password")
 
@@ -81,6 +86,12 @@ from .models import Teachers
 def profile(request):
     try:
         teacher = Teachers.objects.get(name=request.user.username)
+        teacher = Teachers.objects.get(Password=request.user.password)
+        teacher = Teachers.objects.get(Address=request.user.Address)
+        teacher = Teachers.objects.get(Age=request.user.age)
+        
+        
+        
     except Teachers.DoesNotExist:
         teacher = None
     return render(request, 'MyProfile.html', {'user': request.user, 'teacher': teacher})

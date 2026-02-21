@@ -8,20 +8,19 @@
 <h2>My Profile</h2>
 
 <p><strong>Username:</strong> {{ user.username }}</p>
-<p><strong>Email:</strong> {{ user.email }}</p>
-{% if teacher %}
-<p><strong>Address:</strong> {{ teacher.Address }}</p>
-<p><strong>Age:</strong> {{ teacher.age }}</p>
-<p><strong>Gender:</strong> {{ teacher.Gender }}</p>
-<p><strong>Date of Birth:</strong> {{ teacher.DOB }}</p>
-{% else %}
-<p>No teacher details found.</p>
-{% endif %}
+<p><strong>Password:</strong> {{ user.password }}</p>
+{% comment %} <p><strong>Address:</strong> {{ teacher.Address }}</p>
+    <p><strong>Email:</strong> {{ teacher.email }}</p>
+    <p><strong>Age:</strong> {{ teacher.age }}</p>
+    <p><strong>DOB:</strong> {{ teacher.DOB }}</p> {% endcomment %}
 
 <form method="post" action="{% url 'logout' %}">
     {% csrf_token %}
     <button type="submit">Logout</button>
+
 </form>
+<br>
+        <li><a href="/karthik/app2">Home</a></li>
 
 </body>
 </html>
