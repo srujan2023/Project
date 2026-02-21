@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import logout
 from django.http import HttpResponse
 from .models import articles
+from django.contrib.auth.decorators import login_required
 
 def create(request):
     articles_list = articles.objects.all()
@@ -17,7 +18,11 @@ def article(request):
         title = request.POST.get('title')
         image = request.FILES.get('image')
         body = request.POST.get('body')
-        author = request.POST.get('author')
+        # prefer the logged-in user's username as author
+        if request.user.is_authenticated:
+            author = request.user.username
+        else:
+            author = request.POST.get('author')
         
         print("Title:", title)
         print("Image:", image)  
@@ -30,8 +35,9 @@ def article(request):
             body=body,
             author=author
         )
-        
-        return render(request, 'articles.html', {'success': True})
+
+        # redirect to the articles list so all users' articles are shown
+        return redirect('create')
     
 def delete_article(request, id):
     articles_list = get_object_or_404(articles, id=id)

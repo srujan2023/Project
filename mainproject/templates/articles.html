@@ -13,19 +13,21 @@
 <div class="articles-container">
 {% for article in articles %}
 <div class="article-card">
+        <small>By {{ article.author }}</small>
+
         <h3>{{ article.title }}</h3>
 
         {% if article.image %}
             <img src="{{ article.image.url }}" width="200">
+               <p>{{ article.body }}</p>
+        <a href="{% url 'delete_article' article.id %}"
+   onclick="return confirm('Are you sure?');">
+   Delete
 </div>
         {% endif %} 
 </div>
 
-        <p>{{ article.body }}</p>
-        <small>By {{ article.author }}</small>
-        <a href="{% url 'delete_article' article.id %}"
-   onclick="return confirm('Are you sure?');">
-   Delete
+     
 </a>
 
     </div>
