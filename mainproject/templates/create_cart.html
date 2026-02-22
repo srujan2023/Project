@@ -1,0 +1,24 @@
+{% comment %} {% load static %} {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Articles</title>
+ {% comment %} <link rel="stylesheet" href="{% static 'create_articles.css' %}"> {% endcomment %}
+
+</head>
+<body>
+
+
+<form method="post" >
+    {% csrf_token %}
+    <label for="Productname">Product Name:</label><br>
+    <input type="text" id="Productname" name="Productname" required><br><br>
+    <label for="Price">Price:</label><br>
+    <input type="number" id="Price" name="Price" required><br><br>
+    <label for="description">Description:</label><br>               
+    <textarea id="description" name="description" required></textarea><br><br>  
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
