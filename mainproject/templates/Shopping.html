@@ -13,27 +13,15 @@
 
     <div class="shop-container">
 
-        <div class="product-card">
-            <img src="{% static 'images/book1.jpg' %}" alt="Book">
-            <h3>Python Programming</h3>
-            <p class="price">₹499</p>
-            <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-            <img src="{% static 'images/book2.jpg' %}" alt="Book">
-            <h3>Django for Beginners</h3>
-            <p class="price">₹599</p>
-            <button>Add to Cart</button>
-        </div>
-
-        <div class="product-card">
-            <img src="{% static 'images/book3.jpg' %}" alt="Book">
-            <h3>Data Science Guide</h3>
-            <p class="price">₹699</p>
-            <button>Add to Cart</button>
-        </div>
-
+    {% for product in products %}
+    <div style="border:1px solid black; padding:10px; margin-bottom:10px;">
+        <h3>{{ product.Productname }}</h3>
+        <p><strong>Price:</strong> ₹{{ product.Price }}</p>
+        <p>{{ product.description }}</p>
+    </div>
+{% empty %}
+    <p>No products added yet.</p>
+{% endfor %}
     </div>
 
 </body>
