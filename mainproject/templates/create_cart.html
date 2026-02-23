@@ -10,14 +10,16 @@
 <body>
 
 
-<form method="post" >
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="Productname">Product Name:</label><br>
     <input type="text" id="Productname" name="Productname" required><br><br>
     <label for="Price">Price:</label><br>
     <input type="number" id="Price" name="Price" required><br><br>
     <label for="description">Description:</label><br>               
-    <textarea id="description" name="description" required></textarea><br><br>  
+    <textarea id="description" name="description" required></textarea><br><br>
+    <label for="image">Image:</label><br>
+    <input type="file" id="image" name="image" accept="image/*"><br><br>
     <button type="submit">Submit</button>
 </form>
 </body>

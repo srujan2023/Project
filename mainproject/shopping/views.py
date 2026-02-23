@@ -14,11 +14,13 @@ def create_cart(request):
         Productname = request.POST.get('Productname')
         Price = request.POST.get('Price')
         description = request.POST.get('description')
+        image = request.FILES.get('image')
 
         Shopping.objects.create(
             Productname=Productname,
             Price=Price,
             description=description,
+            image=image,
         )
 
         return redirect('cart')
