@@ -21,9 +21,11 @@
             <img src="{{ article.image.url }}">
         {% endif %}
                <p>{{ article.body }}</p>
+        {% if user.is_staff %}
         <a href="{% url 'delete_article' article.id %}"
    onclick="return confirm('Are you sure?');">
    Delete</a>
+        {% endif %}
 </div>
 {% empty %}
     <p>No articles found.</p>
