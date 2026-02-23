@@ -12,7 +12,7 @@
 <body>
 
     <header>
-        <h1>Welcome to Teachers Detials</h1>
+        <h1>Welcome to Users Detials</h1>
     </header>
 
     <!-- Navigation -->
@@ -20,29 +20,31 @@
     <!-- Main Content -->
     <main>
         <section>
-            {%  for teachers in teachers %}
-           <center>
+            {% for teacher in teachers %}
             <table>
-             <tr><th>Name</th>
-                <td>{{teachers.name}}</td>  <br>
-                <th>Age</th>
-                <td>{{teachers.age}}</td><br>
-                {% comment %} <th>enrollment_date</th>
-                <td>{{teachers.enrollment_date}}</td><br> {% endcomment %}
-                <th>DOB</th>
-                <td>{{teachers.DOB}}</td><br>
-                {% comment %} <th>Teacher_id</th>
-                <td>{{teachers.Teacher_id}}</td><br> {% endcomment %}
-                <th>Collage_Name</th>
-                <td>{{teachers.Collage_Name}}</td><br>
-                <th>Gender</th>
-                <td>{{teachers.Gender}}</td><br>
-    <th><a href="{% url 'update' teachers.id %}">Update</a></th>
-
                 <tr>
-           </table>
-           </center>
-                    {% endfor %}
+                    <th>Name</th>
+                    <td>{{ teacher.name }}</td>
+                </tr>
+                <tr>
+                    <th>Age</th>
+                    <td>{{ teacher.age }}</td>
+                </tr>
+                <tr>
+                    <th>DOB</th>
+                    <td>{{ teacher.DOB }}</td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>{{ teacher.Gender }}</td>
+                </tr>
+                <tr>
+                    <th>Actions</th>
+                    <td><a href="{% url 'update' teacher.id %}">Update</a></td>
+                </tr>
+            </table>
+            {% endfor %}
+        </section>
          
         </section>
     </main>

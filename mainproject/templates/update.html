@@ -1,34 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registration Form</title>
+    <title>Update Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'create_articles.css' %}">
 </head>
 <body>
 
 <div class="form-container">
     <h2>Update</h2>
 
-         <form method="post">
+    <form method="post">
         {% csrf_token %}
-      name:
-      <input type="text" id="name" name="name" value="{{ teachers.name }}"><br> <br>
-      Age
-      <input type="number" id="age" name="age" value="{{ teachers.age }}"><br> <br>
-      enrollment_date:
-      <input type="date" id="enrollment_date" name="enrollment_date"  value="{{ teachers.enrollment_date|date:'Y-m-d' }}"><br> <br>
-      Addres
-      <input type="text" id="address" name="address" value="{{ teachers.Address }}"><br> <br>
-        DOB:
-        <input type="date" id="DOB" name="DOB" value="{{ teachers.DOB|date:'Y-m-d' }}"><br> <br>
-        Teacher_id
-        <input type="number" id="Teacher" name="Teacher" value="{{ teachers.Teacher_id }}"><br> <br>
-             Collage_Name:
-        <input type="text" id="Collage_Name" name="Collage_Name" value="{{ teachers.Collage_Name }}"><br> <br>
-         Gender
-        <input type="text" id="Gender" name="Gender" value="{{ teachers.Gender }}"><br> <br>
-      <button type="submit" value="Update">Update</button>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ teachers.name }}"><br><br>
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" value="{{ teachers.age }}"><br><br>
+        <label for="enrollment_date">Enrollment Date:</label><br>
+        <input type="date" id="enrollment_date" name="enrollment_date" value="{{ teachers.enrollment_date|date:'Y-m-d' }}"><br><br>
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address" value="{{ teachers.Address }}"><br><br>
+        <label for="Gender">Gender:</label><br>
+        <input type="text" id="Gender" name="Gender" value="{{ teachers.Gender }}"><br><br>
+        <button type="submit">Update</button>
     </form>
 </div>
 

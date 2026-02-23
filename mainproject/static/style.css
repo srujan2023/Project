@@ -12,7 +12,8 @@
         }
 
         nav {
-            background-color: #a1f3cd;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         nav ul {
@@ -21,21 +22,27 @@
             padding: 0;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         nav ul li {
-            margin: 0 15px;
+            margin: 0 10px;
         }
 
         nav ul li a {
             color: white;
             text-decoration: none;
-            padding: 10px;
+            padding: 12px 20px;
+            display: block;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+            font-weight: 500;
         }
 
         nav ul li a:hover {
-            background-color: #222;
-            border-radius: 5px;
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         main {

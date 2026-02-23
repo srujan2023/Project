@@ -1,7 +1,12 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+from articles.models import articles
+from shopping.models import Shopping
 
 def home(request):
-    return HttpResponse("Hii This is my project")
+    articles_list = articles.objects.all()[:5]  # Get latest 5 articles
+    products = Shopping.objects.all()[:6]  # Get latest 6 products
+    return render(request, 'html.html', {'articles': articles_list, 'products': products})
 
 def contact(request):
     return HttpResponse("7975478551")
