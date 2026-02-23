@@ -18,22 +18,18 @@
         <h3>{{ article.title }}</h3>
 
         {% if article.image %}
-            <img src="{{ article.image.url }}" width="200">
+            <img src="{{ article.image.url }}">
+        {% endif %}
                <p>{{ article.body }}</p>
         <a href="{% url 'delete_article' article.id %}"
    onclick="return confirm('Are you sure?');">
-   Delete
+   Delete</a>
 </div>
-        {% endif %} 
-</div>
-
-     
-</a>
-
-    </div>
 {% empty %}
     <p>No articles found.</p>
 {% endfor %}
+
+    </div>
 
     </center>
 </body>

@@ -14,12 +14,12 @@
     <div class="shop-container">
 
     {% for product in products %}
-    <div style="border:1px solid black; padding:10px; margin-bottom:10px;">
+    <div class="product-card">
         {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.Productname }}" style="max-width: 200px; height: auto;">
+            <img src="{{ product.image.url }}" alt="{{ product.Productname }}">
         {% endif %}
         <h3>{{ product.Productname }}</h3>
-        <p><strong>Price:</strong> ₹{{ product.Price }}</p>
+        <p class="price"><strong>Price:</strong> ₹{{ product.Price }}</p>
         <p><strong>Description:</strong></p>
         <p>{{ product.description }}</p>
     </div>

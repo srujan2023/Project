@@ -8,7 +8,7 @@
 /* Body */
 body {
     font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: linear-gradient(135deg, #1243d6, #1cc88a);
+    background: linear-gradient(135deg, #667eea, #764ba2);
     padding: 40px;
 }
 
@@ -22,7 +22,7 @@ h2 {
 
 /* 2x2 Grid Layout */
 .articles-container {
-    display: flex;
+    display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 columns */
     gap: 25px;
     max-width: 1100px;

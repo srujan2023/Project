@@ -1,15 +1,16 @@
-{% comment %} {% load static %} {% endcomment %}
+{% load static %}
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Articles</title>
- {% comment %} <link rel="stylesheet" href="{% static 'create_articles.css' %}"> {% endcomment %}
+    <title>Create Product</title>
+ <link rel="stylesheet" href="{% static 'create_articles.css' %}">
 
 </head>
 <body>
 
-
+<div class="form-container">
+    <h2>Create Product</h2>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="Productname">Product Name:</label><br>
@@ -22,5 +23,6 @@
     <input type="file" id="image" name="image" accept="image/*"><br><br>
     <button type="submit">Submit</button>
 </form>
+</div>
 </body>
 </html>
