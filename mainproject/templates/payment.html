@@ -1,18 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Payment</title>
-    {% load static %}
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <link rel="stylesheet" href="{% static 'shopping.css' %}">
+    <link rel="stylesheet" href="{% static 'payment.css' %}">
 </head>
 <body>
-
-<h2>Pay for {{ product.Productname }}</h2>
-<p>Price: ₹{{ product.Price }}</p>
-<button id="pay-btn">Pay Now</button>
-<br><br>
-<a href="{% url 'cart' %}">Back to Shopping</a>
+    
+<div class="payment-container">
+    <h2>Pay for {{ product.Productname }}</h2>
+    <p>Price: ₹{{ product.Price }}</p>
+    <button id="pay-btn">Pay Now</button>
+    <br><br>
+    <a href="{% url 'cart' %}">Back to Shopping</a>
+</div>
 
 <script>
     var options = {
