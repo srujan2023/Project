@@ -19,16 +19,21 @@
 
         <li><a href="About.html">About</a></li>
         <li><a href="/cart">Shopping</a></li>
-        <li><a href="/createcart">Create Cart</a></li>
-
         <li><a href="Contact.html">Contact</a></li>
+
+
+        {% if user.is_staff %}
+        <li><a href="/createcart">Create Cart</a></li>
         <li><a href="doahboard.html">dashboard</a></li>
-        <li><a href="{% url 'create' %}">Articles</a></li>
+        {% endif %}
+
+
 
 
 {% if user.is_authenticated %}
         <li><a href="MyProfile.html">Myprofile</a></li>
         <li><a href="create_articles">Create</a></li>
+        <li><a href="{% url 'create' %}">Articles</a></li>
 
 {% else %}
         <li><a href="login.html">Login</a></li>

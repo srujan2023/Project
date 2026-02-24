@@ -22,6 +22,10 @@
         <p class="price"><strong>Price:</strong> ₹{{ product.Price }}</p>
         <p><strong>Description:</strong></p>
         <p>{{ product.description }}</p>
+     <form method="POST" action="{% url 'buy_product' product.id %}">
+    {% csrf_token %}
+    <button type="submit" class="buy-now-btn">Buy Now</button>
+</form>
     </div>
 {% empty %}
     <p>No products added yet.</p>
