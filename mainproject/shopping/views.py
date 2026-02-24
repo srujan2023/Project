@@ -31,15 +31,19 @@ def create_cart(request):
 import razorpay
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
-from .models import Product
+from .models import Shopping
 
 def buy_product(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
+    product = get_object_or_404(Shopping, id=product_id)
+
+    # Cap the amount to Razorpay's test limit (₹1,00,000)
+    max_amount = 100000  # in rupees
+    amount_in_paise = min(int(product.Price * 100), max_amount * 100)
 
     client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
     payment = client.order.create({
-        "amount": int(product.Price * 100),  # Razorpay takes amount in paise
+        "amount": amount_in_paise,  # Razorpay takes amount in paise
         "currency": "INR",
         "payment_capture": "1"
     })

@@ -137,3 +137,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
+
+RAZORPAY_KEY_ID = "rzp_test_SK3yi9SbfmeDIl"
+RAZORPAY_KEY_SECRET = "sExfG60PXGkokgapkkSpIWlH"
+
+
