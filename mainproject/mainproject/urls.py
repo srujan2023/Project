@@ -21,7 +21,7 @@ urlpatterns = [
     path('', include('articles.urls')), 
     path('', include('shopping.urls')), 
     
-      path('', home,name='home'),
+      path('karthik/app2', home,name='home'),
       
       path('contact',contact,name='contact'),
       path('skills', skills,name='skills'),
@@ -37,7 +37,8 @@ urlpatterns = [
       path('karthik/',include('app4.urls')),
       path('karthik/',include('app5.urls')),
       path('karthik/',include('articles.urls')), 
-      path('karthik/',include('shopping.urls')),          
+      path('karthik/',include('shopping.urls')),   
+      path('karthik/',include('orders.urls')),       
                
 ]
 

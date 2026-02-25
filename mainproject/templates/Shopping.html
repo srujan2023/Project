@@ -24,6 +24,7 @@
         <p>{{ product.description }}</p>
         <button class="add-to-cart-btn">Add to Cart</button>
         <a href="{% url 'buy_product' product.id %}"><button class="buy-now-btn">Buy Now</button></a>
+        {% comment %} <a href="{% url 'delete_product' product.id %}" onclick="return confirm('Are you sure you want to delete this product?');"><button class="delete-btn">Delete</button></a> {% endcomment %}
     </div>
 {% empty %}
     <p>No products added yet.</p>

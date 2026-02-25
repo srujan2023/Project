@@ -1,5 +1,5 @@
 from django.urls import path
-from shopping.views import cart,create_cart,buy_product,payment_success
+from shopping.views import cart,create_cart,buy_product,payment_success,delete_product
 
 urlpatterns = [
     
@@ -7,5 +7,6 @@ urlpatterns = [
      path('createcart', create_cart, name='create_cart'),
       path('buy/<int:product_id>/', buy_product, name='buy_product'),
     path('payment-success/', payment_success, name='payment_success'),
+    path('delete/<int:product_id>/', delete_product, name='delete_product'),
      
 ]

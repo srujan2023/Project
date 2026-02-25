@@ -61,11 +61,37 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s ease;
+    margin: 5px;
 }
 
 .product-card button:hover {
     background: #0f2bb5;
     transform: scale(1.05);
+}
+
+.delete-btn {
+    background: #dc3545 !important;
+}
+
+.delete-btn:hover {
+    background: #c82333 !important;
+}
+
+.buy-now-btn {
+    background: #28a745 !important;
+}
+
+.buy-now-btn:hover {
+    background: #218838 !important;
+}
+
+.add-to-cart-btn {
+    background: #ffc107 !important;
+    color: #333 !important;
+}
+
+.add-to-cart-btn:hover {
+    background: #e0a800 !important;
 }
 
 .product-card:hover {

@@ -61,3 +61,9 @@ from django.http import HttpResponse
 
 def payment_success(request):
     return HttpResponse("Payment Successful 🎉")
+
+
+def delete_product(request, product_id):
+    product = get_object_or_404(Shopping, id=product_id)
+    product.delete()
+    return redirect('cart')
