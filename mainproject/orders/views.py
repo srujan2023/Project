@@ -5,4 +5,4 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def track_orders(request):
     orders = Order.objects.filter(user=request.user)
-    return render(request, 'track_orders.html', {'orders': orders})
+    return render(request, 'orders.html', {'orders': orders})
