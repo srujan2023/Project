@@ -1,61 +1,75 @@
- body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: #f4f6f8;
+    color: #1f2937;
+}
 
-        header {
-            background-color: #6bbef1;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
+header {
+    background: linear-gradient(120deg, #1f6aa5, #35a3dc);
+    color: #fff;
+    padding: 18px 20px;
+    text-align: center;
+}
 
-        nav {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
+.top-nav {
+    background: #0f2740;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+.top-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
-        nav ul li {
-            margin: 0 10px;
-        }
+.top-nav li {
+    margin: 8px 6px;
+}
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            padding: 12px 20px;
-            display: block;
-            transition: all 0.3s ease;
-            border-radius: 25px;
-            font-weight: 500;
-        }
+.top-nav a {
+    display: block;
+    text-decoration: none;
+    color: #e5edf5;
+    padding: 11px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
 
-        nav ul li a:hover {
-            background-color: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
+.top-nav a:hover {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-2px);
+}
 
-        main {
-            padding: 20px;
-            text-align: center;
-        }
+.content {
+    padding: 36px;
+    background: #ffffff;
+    min-height: calc(100vh - 180px);
+}
 
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
+.content h2 {
+    margin-top: 0;
+    color: #1f2b3a;
+}
+
+footer {
+    background: #111827;
+    color: #fff;
+    text-align: center;
+    padding: 12px 10px;
+}
+
+@media (max-width: 768px) {
+    .top-nav ul {
+        justify-content: center;
+        padding: 8px;
+    }
+
+    .content {
+        padding: 20px;
+        min-height: auto;
+    }
+}

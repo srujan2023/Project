@@ -31,11 +31,12 @@ h2 {
 
 /* Article Card */
 .article-card {
-    background: white;
+    background: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     transition: 0.3s ease;
+    border: 1px solid #e5e7eb;
 }
 
 .article-card:hover {
@@ -45,7 +46,7 @@ h2 {
 /* Title */
 .article-card h3 {
     margin-bottom: 10px;
-    color: #333;
+    color: #1f2937;
 }
 
 /* Image */
@@ -59,13 +60,13 @@ h2 {
 
 /* Body */
 .article-card p {
-    color: #555;
+    color: #374151;
     margin-bottom: 10px;
 }
 
 /* Author */
 .article-card small {
-    color: #888;
+    color: #6b7280;
     display: block;
     margin-bottom: 10px;
 }
@@ -75,7 +76,7 @@ h2 {
     display: inline-block;
     padding: 6px 12px;
     background: #e74a3b;
-    color: white;
+    color: rgb(134, 246, 225);
     text-decoration: none;
     border-radius: 5px;
     font-size: 14px;
@@ -83,6 +84,63 @@ h2 {
 
 .article-card a:hover {
     background: #c0392b;
+}
+
+.reaction-row {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.reaction-row button {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.2s ease;
+}
+
+.like-btn {
+    background-color: #16a34a;
+}
+
+.like-btn:hover {
+    background-color: #15803d;
+}
+
+.dislike-btn {
+    background-color: #dc2626;
+}
+
+.dislike-btn:hover {
+    background-color: #b91c1c;
+}
+
+.reaction-row button:hover {
+    filter: brightness(1.03);
+}
+
+.reaction-row button:active {
+    transform: scale(0.97);
+}
+
+.btn-icon {
+    margin-right: 4px;
+}
+
+.like-btn {
+background-color: aqua;
+}
+
+.reaction-row .like-count,
+.reaction-row .dislike-count {
+    background: rgba(255, 255, 255, 0.22);
+    padding: 2px 6px;
+    border-radius: 999px;
+    margin-left: 2px;
 }
 
 /* Mobile Responsive */

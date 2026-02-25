@@ -8,11 +8,10 @@
 </head>
 <body>
 
-<center>
     <h2>All Articles</h2>
 <div class="articles-container">
 {% for article in articles %}
-<div class="article-card">
+<div class="article-card" data-article-id="{{ article.id }}">
         <small>By {{ article.author }}</small>
 
         <h3>{{ article.title }}</h3>
@@ -20,6 +19,10 @@
         {% if article.image %}
             <img src="{{ article.image.url }}">
         {% endif %}
+        <div class="reaction-row">
+            <button type="button" class="like-btn"><span class="btn-icon">❤️</span> Like (<span class="like-count">0</span>)</button>
+            <button type="button" class="dislike-btn"><span class="btn-icon">👎</span> Dislike (<span class="dislike-count">0</span>)</button>
+        </div>
                <p>{{ article.body }}</p>
                
         {% if user.is_staff %}
@@ -27,6 +30,7 @@
    onclick="return confirm('Are you sure?');">
    Delete</a>
         {% endif %}
+        
 </div>
 {% empty %}
     <p>No articles found.</p>
@@ -34,6 +38,44 @@
 
     </div>
 
-    </center>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".article-card").forEach(function(card) {
+            const articleId = card.dataset.articleId;
+            const likeCount = card.querySelector(".like-count");
+            const dislikeCount = card.querySelector(".dislike-count");
+
+            const savedLikes = localStorage.getItem("article_" + articleId + "_likes");
+            const savedDislikes = localStorage.getItem("article_" + articleId + "_dislikes");
+            likeCount.textContent = savedLikes ? savedLikes : 0;
+            dislikeCount.textContent = savedDislikes ? savedDislikes : 0;
+        });
+
+        document.addEventListener("click", function(e) {
+            const likeBtn = e.target.closest(".like-btn");
+            const dislikeBtn = e.target.closest(".dislike-btn");
+            if (!likeBtn && !dislikeBtn) return;
+
+            const card = e.target.closest(".article-card");
+            if (!card) return;
+
+            const articleId = card.dataset.articleId;
+            const likeCount = card.querySelector(".like-count");
+            const dislikeCount = card.querySelector(".dislike-count");
+
+            if (likeBtn) {
+                const nextLikes = Number(likeCount.textContent) + 1;
+                likeCount.textContent = nextLikes;
+                localStorage.setItem("article_" + articleId + "_likes", nextLikes);
+            }
+
+            if (dislikeBtn) {
+                const nextDislikes = Number(dislikeCount.textContent) + 1;
+                dislikeCount.textContent = nextDislikes;
+                localStorage.setItem("article_" + articleId + "_dislikes", nextDislikes);
+            }
+        }, false);
+    });
+</script>
 </body>
 </html>
