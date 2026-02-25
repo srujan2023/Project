@@ -1,7 +1,12 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+import razorpay
+import uuid
 
 from .models import Shopping
+from orders.models import Order
 
 
 def cart(request):
@@ -28,11 +33,7 @@ def create_cart(request):
     return render(request, "create_cart.html")
 
 
-import razorpay
-from django.conf import settings
-from django.shortcuts import render, get_object_or_404
-from .models import Shopping
-
+@login_required
 def buy_product(request, product_id):
     product = get_object_or_404(Shopping, id=product_id)
 
@@ -57,10 +58,21 @@ def buy_product(request, product_id):
     return render(request, "payment.html", context)
 
 
-from django.http import HttpResponse
-
+@login_required
 def payment_success(request):
-    return HttpResponse("Payment Successful 🎉")
+    product_id = request.GET.get("product_id")
+    if not product_id:
+        return HttpResponse("Payment successful, but product was not provided.")
+
+    product = get_object_or_404(Shopping, id=product_id)
+    Order.objects.create(
+        user=request.user,
+        product_name=product.Productname,
+        quantity=1,
+        tracking_id=f"TRK-{uuid.uuid4().hex[:10].upper()}",
+        status="Processing",
+    )
+    return redirect("track_orders")
 
 
 def delete_product(request, product_id):

@@ -25,7 +25,7 @@
         "description": "{{ product.Productname }}",
         "order_id": "{{ payment.id }}",
         "handler": function (response){
-            window.location.href = "/payment-success/";
+            window.location.href = "{% url 'payment_success' %}?product_id={{ product.id }}";
         }
     };
 
