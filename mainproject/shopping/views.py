@@ -34,6 +34,36 @@ def create_cart(request):
 
 
 @login_required
+def add_to_cart(request, product_id):
+    if request.method != "POST":
+        return redirect("cart")
+
+    get_object_or_404(Shopping, id=product_id)
+    cart_items = request.session.get("cart_items", [])
+    if product_id not in cart_items:
+        cart_items.append(product_id)
+        request.session["cart_items"] = cart_items
+    return redirect("cart")
+
+
+@login_required
+def edit_product(request, product_id):
+    product = get_object_or_404(Shopping, id=product_id)
+
+    if request.method == "POST":
+        product.Productname = request.POST.get("Productname")
+        product.Price = request.POST.get("Price")
+        product.description = request.POST.get("description")
+        image = request.FILES.get("image")
+        if image:
+            product.image = image
+        product.save()
+        return redirect("cart")
+
+    return render(request, "edit_cart.html", {"product": product})
+
+
+@login_required
 def buy_product(request, product_id):
     product = get_object_or_404(Shopping, id=product_id)
 

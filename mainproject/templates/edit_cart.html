@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="{% static 'create_articles.css' %}">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Edit Product</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="Productname">Product Name:</label><br>
+        <input type="text" id="Productname" name="Productname" value="{{ product.Productname }}" required><br><br>
+        <label for="Price">Price:</label><br>
+        <input type="number" id="Price" name="Price" value="{{ product.Price }}" required><br><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" required>{{ product.description }}</textarea><br><br>
+        <label for="image">Image:</label><br>
+        <input type="file" id="image" name="image" accept="image/*"><br><br>
+        <button type="submit">Update</button>
+    </form>
+</div>
+</body>
+</html>
