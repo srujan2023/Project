@@ -26,7 +26,7 @@ def myprofile(request):
 
 
 
-def Shopping(request):
+def shopping_page(request):
     return HttpResponse("Welcome to Shopping Page")
 
 def Myorders(request):

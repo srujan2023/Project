@@ -9,7 +9,7 @@ from .views import contact
 from .views import email
 from .views import email
 from .views import dashbord
-from .views import  Shopping
+from .views import  shopping_page
 from .views import  Myorders
 from .views import feedback
 from .views import myprofile
@@ -27,7 +27,7 @@ urlpatterns = [
       path('skills', skills,name='skills'),
       path('email', email,name='email'),
       path('dashbord', dashbord,name='dashbord'),
-      path('shopping', Shopping,name='shopping'),
+      path('shopping', shopping_page,name='shopping'),
       path('Myorders', Myorders,name='Myorders'),
       path('feedback', feedback,name='feedback'),
       path('myprofile', myprofile,name='myprofile'),
