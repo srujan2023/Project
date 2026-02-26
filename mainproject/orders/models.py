@@ -11,6 +11,7 @@ class Order(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=200)
+    product_image = models.ImageField(upload_to='orders/', null=True, blank=True)
     quantity = models.IntegerField()
     tracking_id = models.CharField(max_length=100)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='Processing')

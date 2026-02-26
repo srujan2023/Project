@@ -98,6 +98,7 @@ def payment_success(request):
     Order.objects.create(
         user=request.user,
         product_name=product.Productname,
+        product_image=product.image,
         quantity=1,
         tracking_id=f"TRK-{uuid.uuid4().hex[:10].upper()}",
         status="Processing",

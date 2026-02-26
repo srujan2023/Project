@@ -18,6 +18,38 @@ h2 {
     margin-bottom: 24px;
 }
 
+.track-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+#map-toggle {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    background: #16a085;
+    color: #fff;
+    cursor: pointer;
+}
+
+#map-toggle:hover {
+    background: #10806b;
+}
+
+.orders-map-wrap {
+    display: none;
+    margin: 0 auto 20px;
+}
+
+#orders-map {
+    height: 320px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #dcdfe3;
+}
+
 .order-card {
     background: #fff;
     border: 1px solid #dcdfe3;
@@ -32,6 +64,46 @@ h2 {
     margin: 8px 0;
 }
 
+.order-card img {
+    width: 100%;
+    max-width: 220px;
+    border-radius: 8px;
+    margin: 6px 0;
+    object-fit: cover;
+}
+
+.order-detail-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.live-track {
+    margin: 12px 0 8px;
+}
+
+.track-bar {
+    width: 100%;
+    height: 10px;
+    border-radius: 999px;
+    background: #e8edf3;
+    overflow: hidden;
+}
+
+.track-fill {
+    width: 0;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #1abc9c, #3498db);
+    transition: width 0.4s ease;
+}
+
+.track-label {
+    display: inline-block;
+    margin-top: 6px;
+    color: #5f6f81;
+}
+
 .empty-text {
     text-align: center;
     color: #666;
@@ -39,4 +111,10 @@ h2 {
     border: 1px dashed #cfd4da;
     border-radius: 8px;
     padding: 16px;
+}
+
+@media (max-width: 600px) {
+    #orders-map {
+        height: 240px;
+    }
 }

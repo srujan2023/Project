@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Details</title>
+    <link rel="stylesheet" href="{% static 'orders.css' %}">
+</head>
+<body>
+
+<div class="orders-container">
+    <h2>Order Details</h2>
+    <div class="order-card">
+        <p><strong>Product:</strong> {{ order.product_name }}</p>
+        {% if order.display_image_url %}
+        <img class="order-detail-image" src="{{ order.display_image_url }}" alt="{{ order.product_name }}">
+        {% endif %}
+        <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+        <p><strong>Status:</strong> {{ order.status }}</p>
+        <p><strong>Tracking ID:</strong> {{ order.tracking_id }}</p>
+        <p><strong>Ordered At:</strong> {{ order.created_at }}</p>
+    </div>
+    <a href="{% url 'track_orders' %}">Back to my orders</a>
+</div>
+
+</body>
+</html>

@@ -5,19 +5,30 @@
 <head>
     <title>Track Orders</title>
     <link rel="stylesheet" href="{% static 'orders.css' %}">
-
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""
+    >
 </head>
 <body>
 
 <div class="orders-container">
 <h2>My Orders</h2>
 
+
 {% for order in orders %}
-    <div class="order-card">
+    <div class="order-card" data-order-id="{{ order.id }}" data-product-name="{{ order.product_name }}">
         <p><strong>Orders:</strong> {{ order.product_name }}</p>
-        <p><strong>Quantity:</strong> {{ order.quantity }}</p>
-        <p><strong>Status:</strong> {{ order.status }}</p>
+        {% if order.display_image_url %}
+        <img src="{{ order.display_image_url }}" alt="{{ order.product_name }}">
+        {% endif %}
+        {% comment %} <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+        <p><strong>Status:</strong> <span class="order-status">{{ order.status }}</span></p> {% endcomment %}
         <p><strong>Tracking ID:</strong> {{ order.tracking_id }}</p>
+       
+        <a href="{% url 'order_detail' order.id %}">See more</a>
 
     </div>
 {% empty %}
