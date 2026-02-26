@@ -1,79 +1,89 @@
-body {
+/* Reset */
+* {
     margin: 0;
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    background: #f4f6f8;
-    color: #1f2937;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Body */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to right, #4e73df, #1cc88a);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
 header {
-    background: linear-gradient(120deg, #1f6aa5, #35a3dc);
-    color: #fff;
-    padding: 18px 20px;
+    background: #ffffff;
+    padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 28px;
+    color: #4e73df;
 }
 
 .site-icon {
-    margin-right: 6px;
+    font-size: 30px;
 }
 
+/* Navigation */
 .top-nav {
-    background: #0f2740;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: #2c3e50;
 }
 
 .top-nav ul {
     list-style: none;
-    margin: 0;
-    padding: 0 12px;
     display: flex;
-    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
-.top-nav li {
-    margin: 8px 6px;
+.top-nav ul li {
+    margin: 10px 15px;
 }
 
-.top-nav a {
-    display: block;
+.top-nav ul li a {
     text-decoration: none;
-    color: #e5edf5;
-    padding: 11px 12px;
-    border-radius: 8px;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: 0.3s ease;
+    border-radius: 5px;
 }
 
-.top-nav a:hover {
-    background: rgba(255, 255, 255, 0.14);
-    transform: translateY(-2px);
+.top-nav ul li a:hover {
+    background: #1cc88a;
+    color: #fff;
 }
 
+/* Main Content */
 .content {
-    padding: 36px;
-    background: #ffffff;
-    min-height: calc(100vh - 180px);
+    flex: 1;
+    padding: 50px 20px;
+    text-align: center;
+    color: white;
 }
 
 .content h2 {
-    margin-top: 0;
-    color: #1f2b3a;
+    font-size: 32px;
+    margin-bottom: 20px;
 }
 
+.content p {
+    font-size: 18px;
+}
+
+/* Footer */
 footer {
-    background: #111827;
-    color: #fff;
+    background: #ffffff;
     text-align: center;
-    padding: 12px 10px;
-}
-
-@media (max-width: 768px) {
-    .top-nav ul {
-        justify-content: center;
-        padding: 8px;
-    }
-
-    .content {
-        padding: 20px;
-        min-height: auto;
-    }
+    padding: 15px;
+    font-size: 14px;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
 }

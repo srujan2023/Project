@@ -25,10 +25,14 @@
         </div>
                <p>{{ article.body }}</p>
                
-        {% if user.is_staff %}
-        <a href="{% url 'delete_article' article.id %}"
-   onclick="return confirm('Are you sure?');">
-   Delete</a>
+        {% if user.is_authenticated %}
+            {% if user.is_staff or user.username == article.author %}
+            <a href="{% url 'edit_article' article.id %}">Edit</a>
+            <form method="post" action="{% url 'delete_article' article.id %}" onsubmit="return confirm('Are you sure you want to delete this article?');">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+            {% endif %}
         {% endif %}
         
 </div>
@@ -44,11 +48,35 @@
             const articleId = card.dataset.articleId;
             const likeCount = card.querySelector(".like-count");
             const dislikeCount = card.querySelector(".dislike-count");
+            const likeBtn = card.querySelector(".like-btn");
+            const dislikeBtn = card.querySelector(".dislike-btn");
 
             const savedLikes = localStorage.getItem("article_" + articleId + "_likes");
             const savedDislikes = localStorage.getItem("article_" + articleId + "_dislikes");
+            const likedOnce = localStorage.getItem("article_" + articleId + "_liked_once");
+            const dislikedOnce = localStorage.getItem("article_" + articleId + "_disliked_once");
+            let reaction = localStorage.getItem("article_" + articleId + "_reaction");
             likeCount.textContent = savedLikes ? savedLikes : 0;
             dislikeCount.textContent = savedDislikes ? savedDislikes : 0;
+
+            if (!reaction) {
+                if (likedOnce === "true") reaction = "like";
+                if (dislikedOnce === "true") reaction = "dislike";
+                if (reaction) {
+                    localStorage.setItem("article_" + articleId + "_reaction", reaction);
+                }
+            }
+
+            if (likedOnce === "true") {
+                likeBtn.disabled = true;
+            }
+            if (dislikedOnce === "true") {
+                dislikeBtn.disabled = true;
+            }
+            if (reaction === "like" || reaction === "dislike") {
+                likeBtn.disabled = true;
+                dislikeBtn.disabled = true;
+            }
         });
 
         document.addEventListener("click", function(e) {
@@ -62,17 +90,34 @@
             const articleId = card.dataset.articleId;
             const likeCount = card.querySelector(".like-count");
             const dislikeCount = card.querySelector(".dislike-count");
+            const reaction = localStorage.getItem("article_" + articleId + "_reaction");
+
+            if (reaction === "like" || reaction === "dislike") return;
 
             if (likeBtn) {
+                const likedOnce = localStorage.getItem("article_" + articleId + "_liked_once");
+                if (likedOnce === "true") return;
+
                 const nextLikes = Number(likeCount.textContent) + 1;
                 likeCount.textContent = nextLikes;
                 localStorage.setItem("article_" + articleId + "_likes", nextLikes);
+                localStorage.setItem("article_" + articleId + "_liked_once", "true");
+                localStorage.setItem("article_" + articleId + "_reaction", "like");
+                likeBtn.disabled = true;
+                dislikeBtn.disabled = true;
             }
 
             if (dislikeBtn) {
+                const dislikedOnce = localStorage.getItem("article_" + articleId + "_disliked_once");
+                if (dislikedOnce === "true") return;
+
                 const nextDislikes = Number(dislikeCount.textContent) + 1;
                 dislikeCount.textContent = nextDislikes;
                 localStorage.setItem("article_" + articleId + "_dislikes", nextDislikes);
+                localStorage.setItem("article_" + articleId + "_disliked_once", "true");
+                localStorage.setItem("article_" + articleId + "_reaction", "dislike");
+                dislikeBtn.disabled = true;
+                likeBtn.disabled = true;
             }
         }, false);
     });
