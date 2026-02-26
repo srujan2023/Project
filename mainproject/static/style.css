@@ -12,6 +12,10 @@ header {
     text-align: center;
 }
 
+.site-icon {
+    margin-right: 6px;
+}
+
 .top-nav {
     background: #0f2740;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);

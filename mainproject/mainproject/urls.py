@@ -16,7 +16,7 @@ from .views import myprofile
 from .views import skills
 
 urlpatterns = [
-    
+    path('', home, name='home'),
     path('admin/', admin.site.urls),
     path('', include('articles.urls')), 
     path('', include('shopping.urls')), 

@@ -75,7 +75,11 @@ def payment_success(request):
     return redirect("track_orders")
 
 
+@login_required
 def delete_product(request, product_id):
+    if request.method != "POST":
+        return redirect("cart")
+
     product = get_object_or_404(Shopping, id=product_id)
     product.delete()
-    return redirect('cart')
+    return redirect("cart")
