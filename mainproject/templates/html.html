@@ -11,7 +11,7 @@
 <body>
 
 <header>
-    <h1><span class="site-icon">🌐</span> Welcome to Your ALLIN1</h1>
+    <h1><span class="site-icon">&#127760;</span> Welcome to Your ALLIN1</h1>
 </header>
 
 <nav class="top-nav">
@@ -23,41 +23,42 @@
 
         {% if user.is_staff %}
         <li><a href="{% url 'create_cart' %}">Create Cart</a></li>
-        <li><a href="{% url 'doahbord.html' %}">dashboard</a></li>
+        <li><a href="{% url 'doahbord.html' %}">Dashboard</a></li>
         {% endif %}
 
         {% if user.is_authenticated %}
-        <li><a href="{% url 'MyProfile.html' %}">Myprofile</a></li>
+        <li><a href="{% url 'MyProfile.html' %}">My Profile</a></li>
         <li><a href="{% url 'create_artilces' %}">Create</a></li>
         <li><a href="{% url 'create' %}">Articles</a></li>
-    {% else %}
+        {% else %}
         <li><a href="{% url 'login' %}">Login</a></li>
         {% endif %}
     </ul>
 </nav>
 
 <main class="content">
-
     <section class="home-articles">
         <div class="home-articles-header">
             {% comment %} <a href="{% url 'create' %}">View all</a> {% endcomment %}
         </div>
 
         {% if articles %}
-            <div class="home-articles-grid">
-                {% for article in articles %}
-                    <article class="home-article-card">
-                        {% if article.image %}
-                            <img src="{{ article.image.url }}" alt="{{ article.title }}">
-                        {% endif %}
-                        <p class="meta">By {{ article.author }}</p>
-                        <h4>{{ article.title }}</h4>
-                        <p>{{ article.body|truncatechars:120 }}</p>
-                    </article>
-                {% endfor %}
-            </div>
+        <div class="home-articles-grid">
+            {% for article in articles %}
+            <article class="home-article-card">
+                <p class="meta">By {{ article.author }}</p>
+
+                {% if article.image %}
+                <img src="{{ article.image.url }}" alt="{{ article.title }}">
+                {% endif %}
+                <h4>{{ article.title }}</h4>
+                {% comment %} <p>{{ article.body|truncatechars:120 }}</p> {% endcomment %}
+                <a class="see-more-btn" href="{% url 'article_detail' article.id %}">See More</a>
+            </article>
+            {% endfor %}
+        </div>
         {% else %}
-            <p class="no-articles">No articles found.</p>
+        <p class="no-articles">No articles found.</p>
         {% endif %}
     </section>
 </main>

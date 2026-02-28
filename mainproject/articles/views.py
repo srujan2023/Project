@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from django.http import HttpResponseForbidden
 from .models import articles
@@ -7,6 +7,12 @@ from django.contrib.auth.decorators import login_required
 def create(request):
     articles_list = articles.objects.all()
     return render(request, 'articles.html', {'articles': articles_list})
+
+
+def article_detail(request, id):
+    article_obj = get_object_or_404(articles, id=id)
+    return render(request, 'article_detail.html', {'article': article_obj})
+
 
 def create_articles(request):
     return render(request, 'create_articles.html',)
