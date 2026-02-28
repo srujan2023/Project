@@ -37,13 +37,10 @@
 </nav>
 
 <main class="content">
-    <h2>Welcome to My Django Website</h2>
-    <p>This is a simple website built with Django. Explore the different sections using the navigation above.</p>
 
     <section class="home-articles">
         <div class="home-articles-header">
-            <h3>Latest Articles</h3>
-            <a href="{% url 'create' %}">View all</a>
+            {% comment %} <a href="{% url 'create' %}">View all</a> {% endcomment %}
         </div>
 
         {% if articles %}
