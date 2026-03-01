@@ -106,8 +106,10 @@ header h1 {
 
 .home-articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .home-article-card {
@@ -161,4 +163,10 @@ footer {
     padding: 15px;
     font-size: 14px;
     box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+    .home-articles-grid {
+        grid-template-columns: 1fr;
+    }
 }

@@ -15,10 +15,11 @@
     <h2>Create Article</h2>
 <form method="post" enctype="multipart/form-data" action="{% url 'article' %}">
     {% csrf_token %}
-    <input type="text" id="titleInput" name="title" placeholder="Title" required><br><br>
+    <input type="text" id="titleInput" name="title" placeholder="Enter title for AI body generation" required><br><br>
+    <button type="button" id="aiBodyBtn">Generate Body From Title (AI)</button><br><br>
+    
     <input type="file" name="image" required><br><br>
     <textarea id="bodyInput" name="body" placeholder="Body" required></textarea><br><br>
-    <button type="button" id="aiBodyBtn">Generate Body with AI</button><br><br>
     <small id="aiStatus" style="display:block; margin-top:-10px; margin-bottom:12px; color:#2d5b9f;"></small>
     <input type="text" name="author" placeholder="Author" required><br><br>
     <button type="submit">Submit</button>

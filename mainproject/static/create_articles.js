@@ -9,27 +9,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function buildBody(title) {
-        var topic = (title || "").trim() || "Modern technology";
+        var topic = (title || "").trim();
         return [
             "Introduction",
-            topic + " is changing the way people learn, work, and solve daily problems.",
+            topic + " is an important topic that affects daily life and long-term growth.",
             "",
             "Main Discussion",
-            "First, " + topic + " helps improve speed and consistency in everyday tasks.",
-            "Second, it creates new opportunities for creativity and collaboration.",
-            "Finally, using " + topic + " responsibly is important for long-term benefits.",
+            "First, understanding " + topic + " helps build a clear foundation.",
+            "Second, practical use of " + topic + " improves results over time.",
+            "Third, challenges in " + topic + " can be reduced through planning and consistency.",
             "",
             "Conclusion",
-            "In summary, " + topic + " has strong potential when applied with clear goals and balance."
+            "In summary, " + topic + " offers strong value when approached with the right strategy."
         ].join("\n");
     }
 
     aiBodyBtn.addEventListener("click", function (event) {
         event.preventDefault();
-        bodyInput.value = buildBody(titleInput.value);
+        var enteredTitle = (titleInput.value || "").trim();
+        if (!enteredTitle) {
+            if (aiStatus) {
+                aiStatus.textContent = "Enter a title first, then click AI button.";
+            }
+            titleInput.focus();
+            return;
+        }
+        bodyInput.value = buildBody(enteredTitle);
         bodyInput.focus();
         if (aiStatus) {
-            aiStatus.textContent = "AI draft generated. You can edit it before submitting.";
+            aiStatus.textContent = "AI body generated from your title.";
         }
     });
 });
