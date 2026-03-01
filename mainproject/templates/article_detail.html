@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ article.title }} - ALLIN1</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'article_detail.css' %}">
 </head>
 <body>
     <main class="content">
@@ -14,7 +14,7 @@
             <p class="meta">By {{ article.author }}</p>
             <h1>{{ article.title }}</h1>
             {% if article.image %}
-            <img src="{{ article.image.url }}" alt="{{ article.title }}">
+            <img class="article-detail-image" src="{{ article.image.url }}" alt="{{ article.title }}">
             {% endif %}
             <p>{{ article.body }}</p>
         </article>

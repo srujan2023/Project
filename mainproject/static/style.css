@@ -141,6 +141,15 @@ header h1 {
     color: #6b7280;
 }
 
+.article-detail-image {
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+    display: block;
+    margin: 12px auto;
+    border-radius: 10px;
+}
+
 .no-articles {
     color: #fff;
 }
