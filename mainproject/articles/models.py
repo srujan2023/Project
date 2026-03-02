@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 class articles(models.Model):
@@ -5,6 +6,14 @@ class articles(models.Model):
     image = models.ImageField(upload_to='articles/', blank=True, null=True)
     body = models.TextField(blank=True, null=True)
     author = models.CharField(max_length=100, default='Admin',blank=True, null=True)
+    likes = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='liked_articles',
+        blank=True
+    )
+
+    class Meta:
+        ordering = ['-id']
 
     def __str__(self):
         return self.title

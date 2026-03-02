@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from django.http import HttpResponseForbidden
+from django.utils.http import url_has_allowed_host_and_scheme
 from .models import articles
 from django.contrib.auth.decorators import login_required
 
@@ -43,6 +44,27 @@ def article(request):
 
         # redirect to the articles list so all users' articles are shown
         return redirect('create')
+
+
+@login_required
+def toggle_like(request, id):
+    if request.method != 'POST':
+        return redirect('home')
+
+    article_obj = get_object_or_404(articles, id=id)
+    if article_obj.likes.filter(id=request.user.id).exists():
+        article_obj.likes.remove(request.user)
+    else:
+        article_obj.likes.add(request.user)
+
+    next_url = request.POST.get('next') or request.META.get('HTTP_REFERER')
+    if next_url and url_has_allowed_host_and_scheme(
+        url=next_url,
+        allowed_hosts={request.get_host()},
+        require_https=request.is_secure(),
+    ):
+        return redirect(next_url)
+    return redirect('home')
     
 @login_required
 def delete_article(request, id):

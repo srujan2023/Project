@@ -4,7 +4,7 @@ from articles.models import articles
 from shopping.models import Shopping
 
 def home(request):
-    articles_list = articles.objects.all()[:5]  # Get latest 5 articles
+    articles_list = articles.objects.order_by('-id')[:5]  # Get latest 5 articles
     products = Shopping.objects.all()[:6]  # Get latest 6 products
     return render(request, 'html.html', {'articles': articles_list, 'products': products})
 

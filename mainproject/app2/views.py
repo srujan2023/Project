@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from articles.models import articles
 
 
 
 def html(request):
-    return render(request,'html.html')
+    articles_list = articles.objects.order_by('-id')[:5]
+    return render(request, 'html.html', {'articles': articles_list})
 
 def About(request):
     return render(request,'About.html')
