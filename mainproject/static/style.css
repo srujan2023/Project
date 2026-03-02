@@ -143,6 +143,110 @@ header h1 {
     color: #6b7280;
 }
 
+.article-actions {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.like-form {
+    display: inline-flex;
+}
+
+.like-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: #eef2ff;
+    color: #1e3a8a;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+}
+
+.like-btn:hover {
+    background: #dbeafe;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.22);
+}
+
+.like-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(37, 99, 235, 0.16);
+}
+
+.like-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
+.like-btn.liked {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-color: #fecaca;
+}
+
+.like-btn.dislike-btn {
+    background: #e0f2fe;
+    color: #075985;
+}
+
+.like-btn.disliked {
+    background: #dbeafe;
+    color: #1d4ed8;
+    border-color: #bfdbfe;
+}
+
+.like-btn.login-like {
+    background: #f3f4f6;
+    color: #374151;
+    box-shadow: 0 2px 6px rgba(75, 85, 99, 0.14);
+}
+
+.like-btn.dislike-login {
+    background: #eff6ff;
+    color: #1e40af;
+}
+
+.see-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    transition: background 0.2s ease, transform 0.12s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(29, 78, 216, 0.3);
+}
+
+.see-more-btn:hover {
+    background: #1d4ed8;
+    box-shadow: 0 6px 14px rgba(29, 78, 216, 0.35);
+}
+
+.see-more-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(29, 78, 216, 0.28);
+}
+
+.see-more-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
 .article-detail-image {
     width: 100%;
     max-width: 720px;
@@ -168,5 +272,20 @@ footer {
 @media (max-width: 768px) {
     .home-articles-grid {
         grid-template-columns: 1fr;
+    }
+
+    .article-actions {
+        gap: 6px;
+    }
+
+    .like-form,
+    .like-btn,
+    .see-more-btn {
+        width: 100%;
+    }
+
+    .like-btn,
+    .see-more-btn {
+        justify-content: center;
     }
 }

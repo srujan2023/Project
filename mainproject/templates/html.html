@@ -53,6 +53,29 @@
                 {% endif %}
                 <h4>{{ article.title }}</h4>
                 {% comment %} <p>{{ article.body|truncatechars:120 }}</p> {% endcomment %}
+                <div class="article-actions">
+                    {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'toggle_like' article.id %}" class="like-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                        <button type="submit" class="like-btn {% if article.id in liked_article_ids %}liked{% endif %}">
+                            {% if article.id in liked_article_ids %}Unlike{% else %}Like{% endif %}
+                            ({{ article.likes.count }})
+                        </button>
+                    </form>
+                    <form method="post" action="{% url 'toggle_dislike' article.id %}" class="like-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                        <button type="submit" class="like-btn dislike-btn {% if article.id in disliked_article_ids %}disliked{% endif %}">
+                            {% if article.id in disliked_article_ids %}Undislike{% else %}Dislike{% endif %}
+                            ({{ article.dislikes.count }})
+                        </button>
+                    </form>
+                    {% else %}
+                    <a class="like-btn login-like" href="{% url 'login' %}">Login to Like ({{ article.likes.count }})</a>
+                    <a class="like-btn login-like dislike-login" href="{% url 'login' %}">Login to Dislike ({{ article.dislikes.count }})</a>
+                    {% endif %}
+                </div>
                 <a class="see-more-btn" href="{% url 'article_detail' article.id %}">See More</a>
             </article>
             {% endfor %}

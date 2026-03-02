@@ -1,0 +1,18 @@
+from django.conf import settings
+from django.db import migrations, models
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('articles', '0008_alter_articles_options'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
+
+    operations = [
+        migrations.AddField(
+            model_name='articles',
+            name='dislikes',
+            field=models.ManyToManyField(blank=True, related_name='disliked_articles', to=settings.AUTH_USER_MODEL),
+        ),
+    ]

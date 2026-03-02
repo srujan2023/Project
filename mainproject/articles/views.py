@@ -56,6 +56,29 @@ def toggle_like(request, id):
         article_obj.likes.remove(request.user)
     else:
         article_obj.likes.add(request.user)
+        article_obj.dislikes.remove(request.user)
+
+    next_url = request.POST.get('next') or request.META.get('HTTP_REFERER')
+    if next_url and url_has_allowed_host_and_scheme(
+        url=next_url,
+        allowed_hosts={request.get_host()},
+        require_https=request.is_secure(),
+    ):
+        return redirect(next_url)
+    return redirect('home')
+
+
+@login_required
+def toggle_dislike(request, id):
+    if request.method != 'POST':
+        return redirect('home')
+
+    article_obj = get_object_or_404(articles, id=id)
+    if article_obj.dislikes.filter(id=request.user.id).exists():
+        article_obj.dislikes.remove(request.user)
+    else:
+        article_obj.dislikes.add(request.user)
+        article_obj.likes.remove(request.user)
 
     next_url = request.POST.get('next') or request.META.get('HTTP_REFERER')
     if next_url and url_has_allowed_host_and_scheme(

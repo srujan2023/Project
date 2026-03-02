@@ -5,7 +5,16 @@ from articles.models import articles
 
 def html(request):
     articles_list = articles.objects.order_by('-id')[:5]
-    return render(request, 'html.html', {'articles': articles_list})
+    liked_article_ids = []
+    disliked_article_ids = []
+    if request.user.is_authenticated:
+        liked_article_ids = list(request.user.liked_articles.values_list('id', flat=True))
+        disliked_article_ids = list(request.user.disliked_articles.values_list('id', flat=True))
+    return render(request, 'html.html', {
+        'articles': articles_list,
+        'liked_article_ids': liked_article_ids,
+        'disliked_article_ids': disliked_article_ids,
+    })
 
 def About(request):
     return render(request,'About.html')

@@ -6,7 +6,17 @@ from shopping.models import Shopping
 def home(request):
     articles_list = articles.objects.order_by('-id')[:5]  # Get latest 5 articles
     products = Shopping.objects.all()[:6]  # Get latest 6 products
-    return render(request, 'html.html', {'articles': articles_list, 'products': products})
+    liked_article_ids = []
+    disliked_article_ids = []
+    if request.user.is_authenticated:
+        liked_article_ids = list(request.user.liked_articles.values_list('id', flat=True))
+        disliked_article_ids = list(request.user.disliked_articles.values_list('id', flat=True))
+    return render(request, 'html.html', {
+        'articles': articles_list,
+        'products': products,
+        'liked_article_ids': liked_article_ids,
+        'disliked_article_ids': disliked_article_ids,
+    })
 
 def contact(request):
     return HttpResponse("7975478551")

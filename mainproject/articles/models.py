@@ -11,6 +11,11 @@ class articles(models.Model):
         related_name='liked_articles',
         blank=True
     )
+    dislikes = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='disliked_articles',
+        blank=True
+    )
 
     class Meta:
         ordering = ['-id']
