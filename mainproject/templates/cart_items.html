@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="{% static 'shopping.css' %}">
+</head>
+<body>
+    <div class="cart-header">
+        <h2 class="page-title">Your Cart</h2>
+        <a href="{% url 'cart' %}" class="view-cart-link">Continue Shopping</a>
+    </div>
+
+    <p class="cart-count"><strong>Total Items:</strong> {{ cart_count }}</p>
+    <p class="cart-count"><strong>Total Price:</strong> ₹{{ total_price }}</p>
+
+    <div class="shop-container">
+        {% for product in cart_products %}
+            <div class="product-card">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.Productname }}">
+                {% endif %}
+                <h3>{{ product.Productname }}</h3>
+                <p class="price"><strong>Price:</strong> ₹{{ product.Price }}</p>
+
+                <a href="{% url 'buy_product' product.id %}">
+                    <button class="buy-now-btn">Buy Now</button>
+                </a>
+
+                <form method="post" action="{% url 'remove_from_cart' product.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">Remove</button>
+                </form>
+            </div>
+        {% empty %}
+            <p class="empty-state">Your cart is empty.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

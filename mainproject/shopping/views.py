@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.db.models import Q
@@ -13,6 +13,8 @@ from orders.models import Order
 def cart(request):
     search_query = request.GET.get("q", "").strip()
     products = Shopping.objects.all()
+    cart_items = request.session.get("cart_items", [])
+    cart_item_ids = [int(item_id) for item_id in cart_items]
 
     if search_query:
         products = products.filter(
@@ -23,7 +25,12 @@ def cart(request):
     return render(
         request,
         "Shopping.html",
-        {"products": products, "search_query": search_query},
+        {
+            "products": products,
+            "search_query": search_query,
+            "cart_item_ids": cart_item_ids,
+            "cart_count": len(cart_item_ids),
+        },
     )
 
 
@@ -46,17 +53,53 @@ def create_cart(request):
     return render(request, "create_cart.html")
 
 
-@login_required
 def add_to_cart(request, product_id):
     if request.method != "POST":
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            return JsonResponse({"ok": False, "error": "Method not allowed"}, status=405)
         return redirect("cart")
 
     get_object_or_404(Shopping, id=product_id)
     cart_items = request.session.get("cart_items", [])
-    if product_id not in cart_items:
-        cart_items.append(product_id)
-        request.session["cart_items"] = cart_items
+    cart_item_ids = [int(item_id) for item_id in cart_items]
+    if product_id not in cart_item_ids:
+        cart_item_ids.append(product_id)
+        request.session["cart_items"] = cart_item_ids
+
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({"ok": True, "cart_count": len(cart_item_ids), "product_id": product_id})
+
     return redirect("cart")
+
+
+def view_cart(request):
+    cart_items = request.session.get("cart_items", [])
+    cart_item_ids = [int(item_id) for item_id in cart_items]
+    cart_products_qs = Shopping.objects.filter(id__in=cart_item_ids)
+    product_lookup = {product.id: product for product in cart_products_qs}
+    cart_products = [product_lookup[item_id] for item_id in cart_item_ids if item_id in product_lookup]
+    total_price = sum((product.Price or 0) for product in cart_products)
+
+    return render(
+        request,
+        "cart_items.html",
+        {
+            "cart_products": cart_products,
+            "cart_count": len(cart_products),
+            "total_price": total_price,
+        },
+    )
+
+
+def remove_from_cart(request, product_id):
+    if request.method != "POST":
+        return redirect("view_cart")
+
+    cart_items = request.session.get("cart_items", [])
+    cart_item_ids = [int(item_id) for item_id in cart_items]
+    updated_item_ids = [item_id for item_id in cart_item_ids if item_id != product_id]
+    request.session["cart_items"] = updated_item_ids
+    return redirect("view_cart")
 
 
 @login_required

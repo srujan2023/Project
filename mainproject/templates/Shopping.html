@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="{% static 'shopping.css' %}">
 </head>
 <body>
+    <div class="cart-header">
+        <p class="cart-count"><strong>Cart Items:</strong> <span id="cart-count-value">{{ cart_count }}</span></p>
+        <a href="{% url 'view_cart' %}" class="view-cart-link">View Cart</a>
+    </div>
     <form method="get" action="{% url 'cart' %}" class="search-form">
         <input
             type="text"
@@ -33,11 +37,15 @@
         <p class="price"><strong>Price:</strong> ₹{{ product.Price }}</p>
        {% comment %} <p><strong>Description:</strong></p>
         <p>{{ product.description }}</p>  {% endcomment %}
-      
-        {% comment %} <form method="post" action="{% url 'add_to_cart' product.id %}">
-            {% csrf_token %}
-            <button type="submit" class="add-to-cart-btn">Add to Cart</button>
-        </form>  {% endcomment %}
+
+        {% if product.id in cart_item_ids %}
+            <button type="button" class="add-to-cart-btn" disabled>Added to Cart</button>
+        {% else %}
+            <form method="post" action="{% url 'add_to_cart' product.id %}" class="ajax-add-to-cart-form">
+                {% csrf_token %}
+                <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+            </form>
+        {% endif %}
         <a href="{% url 'buy_product' product.id %}"><button class="buy-now-btn">Buy Now</button></a>
         <a href="{% url 'edit_product' product.id %}"><button class="edit-btn">Edit</button></a>
         <form method="post" action="{% url 'delete_product' product.id %}" onsubmit="return confirm('Are you sure you want to delete this product?');">
@@ -56,5 +64,46 @@
 {% endfor %}
     </div>
 
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const cartCountElement = document.getElementById("cart-count-value");
+        const forms = document.querySelectorAll(".ajax-add-to-cart-form");
+
+        forms.forEach((form) => {
+            form.addEventListener("submit", async function (event) {
+                event.preventDefault();
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest"
+                        },
+                        body: new FormData(form)
+                    });
+
+                    if (!response.ok) {
+                        form.submit();
+                        return;
+                    }
+
+                    const data = await response.json();
+                    if (!data.ok) {
+                        form.submit();
+                        return;
+                    }
+
+                    if (cartCountElement) {
+                        cartCountElement.textContent = data.cart_count;
+                    }
+
+                    form.outerHTML = '<button type="button" class="add-to-cart-btn" disabled>Added to Cart</button>';
+                } catch (error) {
+                    form.submit();
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>
