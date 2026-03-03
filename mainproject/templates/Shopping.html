@@ -8,9 +8,20 @@
     <link rel="stylesheet" href="{% static 'shopping.css' %}">
 </head>
 <body>
-
-    <h1 class="page-title">AB Store</h1>
-
+    <form method="get" action="{% url 'cart' %}" class="search-form">
+        <input
+            type="text"
+            name="q"
+            value="{{ search_query }}"
+            placeholder="Search by product name or description"
+            class="search-input"
+        >
+        <button type="submit" class="search-btn">Search</button>
+        {% if search_query %}
+            <a href="{% url 'cart' %}" class="clear-search">Clear</a>
+        {% endif %}
+    </form>
+<br>
     <div class="shop-container">
 
     {% for product in products %}
@@ -18,7 +29,7 @@
         {% if product.image %}
             <img src="{{ product.image.url }}" alt="{{ product.Productname }}">
         {% endif %}
-        {% comment %} <h3>{{ product.Productname }}</h3> {% endcomment %}
+        <h3>{{ product.Productname }}</h3>
         <p class="price"><strong>Price:</strong> ₹{{ product.Price }}</p>
        {% comment %} <p><strong>Description:</strong></p>
         <p>{{ product.description }}</p>  {% endcomment %}
@@ -35,7 +46,13 @@
         </form>
     </div>
 {% empty %}
-    <p>No products added yet.</p>
+    <p class="empty-state">
+        {% if search_query %}
+            No products found for "{{ search_query }}".
+        {% else %}
+            No products added yet.
+        {% endif %}
+    </p>
 {% endfor %}
     </div>
 

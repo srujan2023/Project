@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.db.models import Q
 import razorpay
 import uuid
 
@@ -10,8 +11,20 @@ from orders.models import Order
 
 
 def cart(request):
+    search_query = request.GET.get("q", "").strip()
     products = Shopping.objects.all()
-    return render(request, "Shopping.html", {"products": products})
+
+    if search_query:
+        products = products.filter(
+            Q(Productname__icontains=search_query) |
+            Q(description__icontains=search_query)
+        )
+
+    return render(
+        request,
+        "Shopping.html",
+        {"products": products, "search_query": search_query},
+    )
 
 
 def create_cart(request):
