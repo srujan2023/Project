@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from django.http import HttpResponseForbidden
+from django.http import JsonResponse
 from django.utils.http import url_has_allowed_host_and_scheme
 from .models import articles
 from django.contrib.auth.decorators import login_required
@@ -58,6 +59,17 @@ def toggle_like(request, id):
         article_obj.likes.add(request.user)
         article_obj.dislikes.remove(request.user)
 
+    is_liked = article_obj.likes.filter(id=request.user.id).exists()
+    is_disliked = article_obj.dislikes.filter(id=request.user.id).exists()
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({
+            "ok": True,
+            "liked": is_liked,
+            "disliked": is_disliked,
+            "likes_count": article_obj.likes.count(),
+            "dislikes_count": article_obj.dislikes.count(),
+        })
+
     next_url = request.POST.get('next') or request.META.get('HTTP_REFERER')
     if next_url and url_has_allowed_host_and_scheme(
         url=next_url,
@@ -79,6 +91,17 @@ def toggle_dislike(request, id):
     else:
         article_obj.dislikes.add(request.user)
         article_obj.likes.remove(request.user)
+
+    is_liked = article_obj.likes.filter(id=request.user.id).exists()
+    is_disliked = article_obj.dislikes.filter(id=request.user.id).exists()
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({
+            "ok": True,
+            "liked": is_liked,
+            "disliked": is_disliked,
+            "likes_count": article_obj.likes.count(),
+            "dislikes_count": article_obj.dislikes.count(),
+        })
 
     next_url = request.POST.get('next') or request.META.get('HTTP_REFERER')
     if next_url and url_has_allowed_host_and_scheme(

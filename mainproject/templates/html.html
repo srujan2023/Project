@@ -51,22 +51,21 @@
                 {% if article.image %}
                 <img src="{{ article.image.url }}" alt="{{ article.title }}">
                 {% endif %}
-                <h4>{{ article.title }}</h4>
                 {% comment %} <p>{{ article.body|truncatechars:120 }}</p> {% endcomment %}
                 <div class="article-actions">
                     {% if user.is_authenticated %}
-                    <form method="post" action="{% url 'toggle_like' article.id %}" class="like-form">
+                    <form method="post" action="{% url 'toggle_like' article.id %}" class="like-form ajax-reaction-form">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                        <button type="submit" class="like-btn {% if article.id in liked_article_ids %}liked{% endif %}">
+                        <button type="submit" class="like-btn {% if article.id in liked_article_ids %}liked{% endif %}" data-reaction="like">
                             {% if article.id in liked_article_ids %}Unlike{% else %}Like{% endif %}
                             ({{ article.likes.count }})
                         </button>
                     </form>
-                    <form method="post" action="{% url 'toggle_dislike' article.id %}" class="like-form">
+                    <form method="post" action="{% url 'toggle_dislike' article.id %}" class="like-form ajax-reaction-form">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{ request.get_full_path }}">
-                        <button type="submit" class="like-btn dislike-btn {% if article.id in disliked_article_ids %}disliked{% endif %}">
+                        <button type="submit" class="like-btn dislike-btn {% if article.id in disliked_article_ids %}disliked{% endif %}" data-reaction="dislike">
                             {% if article.id in disliked_article_ids %}Undislike{% else %}Dislike{% endif %}
                             ({{ article.dislikes.count }})
                         </button>
@@ -76,6 +75,8 @@
                     <a class="like-btn login-like dislike-login" href="{% url 'login' %}">Login to Dislike ({{ article.dislikes.count }})</a>
                     {% endif %}
                 </div>
+                <h4>{{ article.title }}</h4>
+
                 <a class="see-more-btn" href="{% url 'article_detail' article.id %}">See More</a>
             </article>
             {% endfor %}
@@ -89,6 +90,57 @@
 <footer>
     <p>&copy; 2026 My Website</p>
 </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const forms = document.querySelectorAll(".ajax-reaction-form");
+
+    forms.forEach((form) => {
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                    },
+                    body: new FormData(form),
+                });
+
+                if (!response.ok) {
+                    form.submit();
+                    return;
+                }
+
+                const data = await response.json();
+                if (!data.ok) {
+                    form.submit();
+                    return;
+                }
+
+                const actions = form.closest(".article-actions");
+                if (!actions) return;
+
+                const likeBtn = actions.querySelector('button[data-reaction="like"]');
+                const dislikeBtn = actions.querySelector('button[data-reaction="dislike"]');
+
+                if (likeBtn) {
+                    likeBtn.textContent = `${data.liked ? "Unlike" : "Like"} (${data.likes_count})`;
+                    likeBtn.classList.toggle("liked", data.liked);
+                }
+
+                if (dislikeBtn) {
+                    dislikeBtn.textContent = `${data.disliked ? "Undislike" : "Dislike"} (${data.dislikes_count})`;
+                    dislikeBtn.classList.toggle("disliked", data.disliked);
+                }
+            } catch (error) {
+                form.submit();
+            }
+        });
+    });
+});
+</script>
 
 </body>
 </html>
