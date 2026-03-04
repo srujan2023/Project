@@ -17,6 +17,12 @@
     <p>Quick Links</p>
     <ul>
         <li><a href="{% url 'MyProfile.html' %}">My Profile</a></li>
+        {% if user.is_superuser %}
+        <li><a href="{% url 'private_products' %}">Private Products</a></li>
+        <li><a href="{% url 'private_articles' %}">Private Articles</a></li>
+        <li><a href="{% url 'create_cart' %}">Create Cart</a></li>
+
+        {% endif %}
         <li><a href="{% url 'Teachers.html' %}">Users</a></li>
         <li><a href="{% url 'logout' %}">Logout</a></li>
     </ul>

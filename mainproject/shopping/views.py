@@ -62,7 +62,7 @@ def create_cart(request):
 
 @login_required
 def private_products(request):
-    if not request.user.is_staff:
+    if not request.user.is_superuser:
         return HttpResponseForbidden("You are not allowed to view private products.")
 
     products = Shopping.objects.filter(visibility=Shopping.VISIBILITY_PRIVATE)
