@@ -4,7 +4,12 @@ from articles.models import articles
 from shopping.models import Shopping
 
 def home(request):
-    articles_list = articles.objects.order_by('-id')[:5]  # Get latest 5 articles
+    if request.user.is_staff:
+        visible_articles = articles.objects.all()
+    else:
+        visible_articles = articles.objects.filter(visibility=articles.VISIBILITY_PUBLIC)
+
+    articles_list = visible_articles.order_by('-id')[:5]  # Get latest 5 visible articles
     products = Shopping.objects.all()[:6]  # Get latest 6 products
     liked_article_ids = []
     disliked_article_ids = []

@@ -30,6 +30,7 @@
         <li><a href="{% url 'MyProfile.html' %}">My Profile</a></li>
         <li><a href="{% url 'create_artilces' %}">Create</a></li>
         <li><a href="{% url 'create' %}">Articles</a></li>
+        <li><a href="{% url 'private_articles' %}">Private Articles</a></li>
         {% else %}
         <li><a href="{% url 'login' %}">Login</a></li>
         {% endif %}

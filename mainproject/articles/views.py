@@ -6,13 +6,37 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from .models import articles
 from django.contrib.auth.decorators import login_required
 
+def _visible_articles_for_user(user):
+    if user.is_staff:
+        return articles.objects.all()
+    return articles.objects.filter(visibility=articles.VISIBILITY_PUBLIC)
+
+
 def create(request):
-    articles_list = articles.objects.all()
+    articles_list = _visible_articles_for_user(request.user)
     return render(request, 'articles.html', {'articles': articles_list})
+
+
+@login_required
+def private_articles(request):
+    if request.user.is_staff:
+        articles_list = articles.objects.filter(visibility=articles.VISIBILITY_PRIVATE)
+    else:
+        articles_list = articles.objects.filter(
+            visibility=articles.VISIBILITY_PRIVATE,
+            author=request.user.username,
+        )
+    return render(request, 'private_articles.html', {'articles': articles_list})
 
 
 def article_detail(request, id):
     article_obj = get_object_or_404(articles, id=id)
+    if (
+        article_obj.visibility == articles.VISIBILITY_PRIVATE
+        and not request.user.is_staff
+        and (not request.user.is_authenticated or request.user.username != article_obj.author)
+    ):
+        return HttpResponseForbidden("This private article is not accessible.")
     return render(request, 'article_detail.html', {'article': article_obj})
 
 
@@ -25,6 +49,9 @@ def article(request):
         title = request.POST.get('title')
         image = request.FILES.get('image')
         body = request.POST.get('body')
+        visibility = request.POST.get('visibility', articles.VISIBILITY_PUBLIC)
+        if visibility not in {articles.VISIBILITY_PUBLIC, articles.VISIBILITY_PRIVATE}:
+            visibility = articles.VISIBILITY_PUBLIC
         # prefer the logged-in user's username as author
         if request.user.is_authenticated:
             author = request.user.username
@@ -40,7 +67,8 @@ def article(request):
             title=title,
             image=image,
             body=body,
-            author=author
+            author=author,
+            visibility=visibility,
         )
 
         # redirect to the articles list so all users' articles are shown
@@ -136,6 +164,9 @@ def edit_article(request, id):
     if request.method == 'POST':
         article_obj.title = request.POST.get('title')
         article_obj.body = request.POST.get('body')
+        visibility = request.POST.get('visibility', articles.VISIBILITY_PUBLIC)
+        if visibility in {articles.VISIBILITY_PUBLIC, articles.VISIBILITY_PRIVATE}:
+            article_obj.visibility = visibility
         new_image = request.FILES.get('image')
         if new_image:
             article_obj.image = new_image

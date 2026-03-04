@@ -15,6 +15,10 @@
         <input type="text" name="title" value="{{ article.title }}" required><br><br>
         <textarea name="body" required>{{ article.body }}</textarea><br><br>
         <input type="file" name="image"><br><br>
+        <select name="visibility" required>
+            <option value="public" {% if article.visibility == "public" %}selected{% endif %}>Public</option>
+            <option value="private" {% if article.visibility == "private" %}selected{% endif %}>Private</option>
+        </select><br><br>
         <button type="submit">Update</button>
     </form>
 </div>
