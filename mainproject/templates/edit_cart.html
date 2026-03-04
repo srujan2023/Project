@@ -20,6 +20,11 @@
         <textarea id="description" name="description" required>{{ product.description }}</textarea><br><br>
         <label for="image">Image:</label><br>
         <input type="file" id="image" name="image" accept="image/*"><br><br>
+        <label for="visibility">Visibility:</label><br>
+        <select id="visibility" name="visibility" required>
+            <option value="public" {% if product.visibility == "public" %}selected{% endif %}>Public</option>
+            <option value="private" {% if product.visibility == "private" %}selected{% endif %}>Private</option>
+        </select><br><br>
         <button type="submit">Update</button>
     </form>
 </div>

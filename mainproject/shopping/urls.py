@@ -4,6 +4,7 @@ from shopping.views import (
     create_cart,
     add_to_cart,
     view_cart,
+    private_products,
     remove_from_cart,
     edit_product,
     buy_product,
@@ -14,6 +15,7 @@ from shopping.views import (
 urlpatterns = [
     
      path('cart', cart, name='cart'),
+     path('cart/private/', private_products, name='private_products'),
      path('cart/items/', view_cart, name='view_cart'),
      path('createcart', create_cart, name='create_cart'),
      path('shopping/add/<int:product_id>/', add_to_cart, name='add_to_cart'),

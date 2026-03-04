@@ -11,6 +11,9 @@
     <div class="cart-header">
         <p class="cart-count"><strong>Cart Items:</strong> <span id="cart-count-value">{{ cart_count }}</span></p>
         <a href="{% url 'view_cart' %}" class="view-cart-link">View Cart</a>
+        {% if user.is_staff %}
+            <a href="{% url 'private_products' %}" class="view-cart-link">Private Products</a>
+        {% endif %}
     </div>
     <form method="get" action="{% url 'cart' %}" class="search-form">
         <input

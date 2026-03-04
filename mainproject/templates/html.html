@@ -23,6 +23,7 @@
 
         {% if user.is_staff %}
         <li><a href="{% url 'create_cart' %}">Create Cart</a></li>
+        <li><a href="{% url 'private_products' %}">Private Products</a></li>
         <li><a href="{% url 'doahbord.html' %}">Dashboard</a></li>
         {% endif %}
 

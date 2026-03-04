@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.db.models import Q
@@ -12,7 +12,10 @@ from orders.models import Order
 
 def cart(request):
     search_query = request.GET.get("q", "").strip()
-    products = Shopping.objects.all()
+    if request.user.is_staff:
+        products = Shopping.objects.all()
+    else:
+        products = Shopping.objects.filter(visibility=Shopping.VISIBILITY_PUBLIC)
     cart_items = request.session.get("cart_items", [])
     cart_item_ids = [int(item_id) for item_id in cart_items]
 
@@ -40,17 +43,37 @@ def create_cart(request):
         Price = request.POST.get('Price')
         description = request.POST.get('description')
         image = request.FILES.get('image')
+        visibility = request.POST.get('visibility', Shopping.VISIBILITY_PUBLIC)
+        if visibility not in {Shopping.VISIBILITY_PUBLIC, Shopping.VISIBILITY_PRIVATE}:
+            visibility = Shopping.VISIBILITY_PUBLIC
 
         Shopping.objects.create(
             Productname=Productname,
             Price=Price,
             description=description,
             image=image,
+            visibility=visibility,
         )
 
         return redirect('cart')
 
     return render(request, "create_cart.html")
+
+
+@login_required
+def private_products(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden("You are not allowed to view private products.")
+
+    products = Shopping.objects.filter(visibility=Shopping.VISIBILITY_PRIVATE)
+    return render(
+        request,
+        "private_products.html",
+        {
+            "products": products,
+            "cart_count": len(request.session.get("cart_items", [])),
+        },
+    )
 
 
 def add_to_cart(request, product_id):
@@ -110,6 +133,9 @@ def edit_product(request, product_id):
         product.Productname = request.POST.get("Productname")
         product.Price = request.POST.get("Price")
         product.description = request.POST.get("description")
+        visibility = request.POST.get("visibility", Shopping.VISIBILITY_PUBLIC)
+        if visibility in {Shopping.VISIBILITY_PUBLIC, Shopping.VISIBILITY_PRIVATE}:
+            product.visibility = visibility
         image = request.FILES.get("image")
         if image:
             product.image = image
