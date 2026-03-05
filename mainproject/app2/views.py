@@ -4,7 +4,7 @@ from articles.models import articles
 
 
 def html(request):
-    articles_list = articles.objects.order_by('-id')[:5]
+    articles_list = articles.objects.order_by('-id')
     liked_article_ids = []
     disliked_article_ids = []
     if request.user.is_authenticated:
@@ -33,4 +33,3 @@ def Shopping(request):
 
 def Teachers(request):
     return render(request,'Teachers.html')
-

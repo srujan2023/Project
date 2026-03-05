@@ -11,7 +11,7 @@ def home(request):
         visible_articles = articles.objects.filter(visibility=articles.VISIBILITY_PUBLIC)
         products = Shopping.objects.filter(visibility=Shopping.VISIBILITY_PUBLIC)[:6]
 
-    articles_list = visible_articles.order_by('-id')[:5]  # Get latest 5 visible articles
+    articles_list = visible_articles.order_by('-id')  # Show all visible articles
     liked_article_ids = []
     disliked_article_ids = []
     if request.user.is_authenticated:
@@ -50,4 +50,3 @@ def Myorders(request):
 
 def feedback(request):
     return HttpResponse("Feedback Page")
-
