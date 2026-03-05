@@ -28,7 +28,6 @@
 
         {% if user.is_authenticated %}
         <li><a href="{% url 'MyProfile.html' %}">My Profile</a></li>
-        <li><a href="{% url 'create_artilces' %}">Create</a></li>
         <li><a href="{% url 'create' %}">Articles</a></li>
         {% else %}
         <li><a href="{% url 'login' %}">Login</a></li>
@@ -88,7 +87,13 @@
 </main>
 
 <footer>
-    <p>&copy; 2026 My Website</p>
+    <p>&copy; 2026 ALLIN1. All rights reserved.</p>
+    <p>
+        <a href="{% url 'About.html' %}">About</a> |
+        <a href="{% url 'Contact.html' %}">Contact</a> |
+        <a href="{% url 'create' %}">Articles</a>|
+        <a href="{% url 'cart' %}">Shopping</a>
+    </p>
 </footer>
 
 <script>
