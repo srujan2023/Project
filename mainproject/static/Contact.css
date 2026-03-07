@@ -13,16 +13,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 /* Contact Card */
 .contact-container {
     background: #ffffff;
     padding: 40px;
-    width: 400px;
+    width: 100%;
+    max-width: 460px;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    text-align: left;
 
     /* Animation */
     animation: fadeSlideUp 1s ease forwards;
@@ -32,6 +34,14 @@ body {
 .contact-container h1 {
     margin-bottom: 20px;
     color: #333;
+    text-align: center;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 16px;
+    color: #4b5563;
+    font-weight: 500;
 }
 
 /* Paragraph Styling */
@@ -51,12 +61,35 @@ body {
 /* Highlight labels */
 .contact-container strong {
     color: #222;
+    display: inline-block;
+    min-width: 75px;
+}
+
+.contact-item {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 14px;
 }
 
 /* Card Hover Effect */
 .contact-container:hover {
     transform: scale(1.03);
     transition: 0.4s ease;
+}
+
+@media (max-width: 480px) {
+    .contact-container {
+        padding: 24px 18px;
+    }
+
+    .contact-container h1 {
+        font-size: 26px;
+    }
+
+    .contact-container p {
+        font-size: 15px;
+    }
 }
 
 /* Keyframe Animation */

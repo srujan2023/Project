@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from articles.models import articles
+from app1.models import Teachers as TeacherModel
 
 
 
@@ -23,7 +24,11 @@ def Contact(request):
     return render(request,'Contact.html')
 
 def MyProfile(request):
-    return render(request,'MyProfile.html')
+    teacher = None
+    if request.user.is_authenticated:
+        teacher = TeacherModel.objects.filter(name=request.user.username).first()
+
+    return render(request, 'MyProfile.html', {'teacher': teacher})
 
 def doahboard(request):
     return render(request,'doahboard.html')
