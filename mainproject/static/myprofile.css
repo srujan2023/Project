@@ -58,6 +58,42 @@ body {
     display: inline-block;
 }
 
+.profile-actions {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.action-link {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 22px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.edit-link {
+    background: #10b981;
+}
+
+.edit-link:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+.home-link {
+    background: #6366f1;
+}
+
+.home-link:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+
 /* Skills list */
 .profile-container ul {
     list-style: none;
