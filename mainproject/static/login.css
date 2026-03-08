@@ -1,73 +1,113 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
   margin: 0;
-  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f2f7ff 0%, #e7fff6 100%);
 }
 
 .container {
-  width: 350px;
-  margin: 100px auto;
-  background: #fff;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border: 1px solid #e4ecff;
+  border-radius: 14px;
+  padding: 28px 24px;
+  box-shadow: 0 16px 40px rgba(26, 51, 102, 0.12);
 }
 
 h2 {
+  margin: 0 0 20px;
   text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+  font-size: 28px;
+  color: #15325b;
 }
 
 label {
   display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
-  color: #555;
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #304768;
 }
 
 input[type="text"],
 input[type="password"] {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  height: 44px;
+  padding: 0 12px;
+  margin-bottom: 14px;
+  border: 1px solid #c9d7ee;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #2b68d8;
+  box-shadow: 0 0 0 3px rgba(43, 104, 216, 0.12);
 }
 
 button {
   width: 100%;
-  padding: 12px;
-  background: #4CAF50;
-  color: white;
+  height: 46px;
+  margin-top: 6px;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #2b68d8, #1a8ad6);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-  background: #45a049;
+  box-shadow: 0 10px 20px rgba(34, 113, 214, 0.25);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
 }
 
 p {
-  margin-top: 10px;
+  margin: 10px 0 0;
+  color: #4e617e;
   font-size: 14px;
-  color: #666;
 }
 
 li {
   list-style: none;
-  margin: 5px 0;
+  display: inline;
+  margin-left: 6px;
 }
 
-li a {
+a {
+  color: #1d5dca;
   text-decoration: none;
-  color: #007BFF;
+  font-weight: 600;
 }
 
-li a:hover {
+a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 22px 16px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
 }
