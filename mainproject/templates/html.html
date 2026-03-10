@@ -89,9 +89,9 @@
 <footer>
     <p>&copy; 2026 ALLIN1. All rights reserved.</p>
     <p>
-        <a href="{% url 'About.html' %}">About</a> |
-        <a href="{% url 'Contact.html' %}">Contact</a> |
-        <a href="{% url 'create' %}">Articles</a>|
+        <a href="{% url 'About.html' %}">About</a> ||
+        <a href="{% url 'Contact.html' %}">Contact</a> ||
+        <a href="{% url 'create' %}">Articles</a>||
         <a href="{% url 'cart' %}">Shopping</a>
     </p>
     <p class="social-links">
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
         form.addEventListener("submit", async function (event) {
             event.preventDefault();
 
-            try {
+            try{
                 const response = await fetch(form.action, {
                     method: "POST",
                     headers: {
