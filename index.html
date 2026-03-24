@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALLIN1</title>
+    <link rel="stylesheet" href="mainproject/static/style.css" />
+    <link rel="icon" type="image/svg+xml" href="mainproject/static/website-icon.svg" />
+  </head>
+  <body>
+    <header>
+      <h1><span class="site-icon">&#127760;</span> ALLIN1</h1>
+    </header>
+
+    <nav class="top-nav">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#run">Run locally</a></li>
+        <li><a href="#deploy">Deploy</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2 id="about">Static landing page</h2>
+      <p>
+        GitHub Pages only serves static files. This repository is a Django app, so the full site can’t run on Pages
+        directly.
+      </p>
+
+      <section class="home-articles" id="run">
+        <div class="home-articles-header">
+          <h3>Run the Django app</h3>
+        </div>
+        <div class="home-articles-grid">
+          <article class="home-article-card">
+            <p class="meta">Local development</p>
+            <h4>1) Install dependencies</h4>
+            <p><code>python -m venv .venv</code> · <code>pip install -r requirements.txt</code></p>
+          </article>
+          <article class="home-article-card">
+            <p class="meta">Local development</p>
+            <h4>2) Run server</h4>
+            <p><code>python manage.py runserver</code></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="home-articles" id="deploy">
+        <div class="home-articles-header">
+          <h3>Deploy options</h3>
+        </div>
+        <div class="home-articles-grid">
+          <article class="home-article-card">
+            <p class="meta">Static hosting</p>
+            <h4>GitHub Pages</h4>
+            <p>Use this page as a landing page, or export a static site build into <code>/docs</code>.</p>
+          </article>
+          <article class="home-article-card">
+            <p class="meta">Dynamic hosting</p>
+            <h4>Django hosting</h4>
+            <p>Use a platform that runs Python (Render/Railway/Fly.io/VM) for the full app.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 ALLIN1. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
+

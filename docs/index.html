@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALLIN1</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/svg+xml" href="website-icon.svg" />
+  </head>
+  <body>
+    <header>
+      <h1><span class="site-icon">&#127760;</span> ALLIN1</h1>
+    </header>
+
+    <nav class="top-nav">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#run">Run locally</a></li>
+        <li><a href="#deploy">Deploy</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2 id="about">Static landing page</h2>
+      <p>
+        GitHub Pages only serves static files. This repository is a Django app, so the full site can’t run on Pages
+        directly.
+      </p>
+
+      <section class="cards" id="run">
+        <h3>Run the Django app</h3>
+        <div class="grid">
+          <article class="card">
+            <p class="meta">Local development</p>
+            <h4>Install</h4>
+            <p><code>python -m venv .venv</code> · <code>pip install -r requirements.txt</code></p>
+          </article>
+          <article class="card">
+            <p class="meta">Local development</p>
+            <h4>Run</h4>
+            <p><code>python manage.py runserver</code></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="cards" id="deploy">
+        <h3>Deploy options</h3>
+        <div class="grid">
+          <article class="card">
+            <p class="meta">Static hosting</p>
+            <h4>GitHub Pages</h4>
+            <p>Keep using this <code>docs/</code> folder as your Pages source.</p>
+          </article>
+          <article class="card">
+            <p class="meta">Dynamic hosting</p>
+            <h4>Django hosting</h4>
+            <p>Use a platform that runs Python for the full app.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 ALLIN1. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
+

@@ -1,0 +1,131 @@
+/* Minimal, self-contained styling for /docs GitHub Pages */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: #51e0f9;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 28px;
+  color: #4e73df;
+}
+
+.site-icon {
+  font-size: 30px;
+}
+
+.top-nav {
+  background: #2c3e50;
+}
+
+.top-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.top-nav ul li {
+  margin: 10px 15px;
+}
+
+.top-nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 8px 12px;
+  transition: 0.3s ease;
+  border-radius: 5px;
+}
+
+.top-nav ul li a:hover {
+  background: #1cc88a;
+  color: #fff;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content h2 {
+  font-size: 32px;
+  margin: 18px 0 10px;
+}
+
+.content p {
+  font-size: 18px;
+  opacity: 0.95;
+  margin-bottom: 12px;
+}
+
+.cards {
+  margin-top: 18px;
+}
+
+.cards h3 {
+  font-size: 22px;
+  margin: 12px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: #fff;
+  color: #1f2937;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.card .meta {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.card h4 {
+  margin: 6px 0 8px;
+  color: #2c3e50;
+}
+
+code {
+  background: rgba(15, 23, 42, 0.08);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+footer {
+  text-align: center;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
